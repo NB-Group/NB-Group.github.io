@@ -1,0 +1,42 @@
+<!-- html 模板 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>上海照片·时间轴</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./dist/style.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- 自动播放按钮,请使用switch-->
+  
+    <div class="header">
+        <div class="header__subtitle" style="margin-top: 20%;margin-left: 44%;">
+            <h2>上海照片·时间轴</h2>
+        </div>
+    <div class="show moveLeft" id="show">
+        <h1 id="date" style="grid-column: 5/12;grid-row: 2;font-size: large;">
+        拍摄于：我也不知道
+         </h1>
+
+        <p id="introduction" class="typewriter" style="grid-column: 5/12;grid-row: 4;">
+            
+        </p>
+
+        <div class="btn btn__primary" onclick="hideShow();" style="grid-column: 8;grid-row: 11/10;">
+            <p>返回</p>
+        </div>
+        <img id="image" class="img"></img>
+    </div>
+
+    <div class="line chip" id="line">
+    </div>
+    <div class="tooltip chip" id="tooltip"></div>
+
+</body>
+<script src="script.js"></script>
+
+</html>
