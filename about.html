@@ -45,13 +45,13 @@
             height: 151px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-            padding: 20px;
+            padding: 20px 20px 20px 20px;
         }
         .language {
             margin-bottom: 20px;
         }
         .language-name {
-            font-size: 1px;
+            font-size: 10px;
             margin-bottom: 5px;
         }
         .progress-bar {
@@ -199,7 +199,7 @@ h4 {
         <div id="text"></div><span id="cursor">|</span>
     </div>
     <script>
-        const text = ['<h2 style="border-bottom: 1px solid gray;">Hi there 👋</h2>','<p>欢迎来到这个屑人的主页。</p>','<h3 style="/* border-bottom: 1px solid var(--color-border-muted); */">个人信息</h3>','<ul>','<li>生日：2011/11/17</li>','<li>年龄：自己算</li>','<li>身份：上下左右前后端程序员/ai训练师</li>','<li style="text-decoration: line-through;">身份：伟大的马克思主义者，伟大的无产阶级革命家、政治家、军事家、外交家，久经考验的共产主义战士，中国特色社会主义伟大事业的杰出领导者</li>','</ul>','<h3>牛叉事迹与项目</h3>','<ul>','<li>还原MOSS <a href="https://www.bilibili.com/video/BV1Dh411g7aR/?spm_id_from=333.999.0.0" style="color: #2f81f7;">视频链接</a></li>','<li>参与windows 12 (网页版) 开发 <a href="https://github.com/tjy-gitnub/win12" style="color: #2f81f7;">项目链接</a></li>','<li>参与上海知至恒信息技术有限公司交易警报系统的开发</li>','<li>开发NB系列软件 <a href="https://github.com/NB-Group/NB-software" style="color: #2f81f7;">项目链接</a></li>','<li>咱就说在学校信息课帮助全班解除老师控制算不算</li>','<li>编程奖项就不写了哈，总之平均编程能力全国前4%</li>','</ul>','<h3>个人使用的编程语言</h3>','<p>其实我python用的更多，我整个MOSS 1000多行代码全部都是python，C++平时比赛的时候用</p>','<div class="container">    <div class="language">        <div class="language-name">HTML</div>        <div class="progress-bar">            <div class="progress" data-progress="60"></div>        </div>    </div>    <div class="language">        <div class="language-name">Python</div>        <div class="progress-bar">            <div class="progress" data-progress="70"></div>        </div>    </div>    <div class="language">        <div class="language-name">C++</div>        <div class="progress-bar">            <div class="progress" data-progress="50"></div>        </div>    </div></div>']
+        const text = ['<h2 style="border-bottom: 1px solid gray;">Hi there 👋</h2>','<p>欢迎来到这个屑人的主页。</p>','<h3 style="/* border-bottom: 1px solid var(--color-border-muted); */">个人信息</h3>','<ul>','<li>姓名：梁皓文</li>','<li>目前就读于上海市陆行中学北校</li>','<li>生日：2011/11/17</li>','<li>年龄：自己算</li>','<li>身份：上下左右前后端程序员/ai训练师</li>','<li style="text-decoration: line-through;">身份：伟大的马克思主义者，伟大的无产阶级革命家、政治家、军事家、外交家，久经考验的共产主义战士，中国特色社会主义伟大事业的杰出领导者</li>','</ul>','<h3>牛叉事迹与项目</h3>','<ul>','<li>还原MOSS <a href="https://www.bilibili.com/video/BV1Dh411g7aR/?spm_id_from=333.999.0.0" style="color: #2f81f7;">视频链接</a></li>','<li>参与windows 12 (网页版) 开发 <a href="https://github.com/tjy-gitnub/win12" style="color: #2f81f7;">项目链接</a></li>','<li>参与上海知至恒信息技术有限公司交易警报系统的开发</li>','<li>开发NB系列软件 <a href="https://github.com/NB-Group/NB-software" style="color: #2f81f7;">项目链接</a></li>','<li>咱就说在学校信息课帮助全班解除老师控制算不算</li>','<li>编程奖项就不写了哈，总之平均编程能力全国前4%</li>','</ul>','<h3>友情链接</h3>','<li><a  style="color: #2f81f7;" href="https://github.com/NB-Group">github主页</a></li>','<li><a  style="color: #2f81f7;" herf="https://space.bilibili.com/1570243738">b站主页</a></li>','<h3>个人使用的编程语言</h3>','<p>其实我python用的更多，我整个MOSS 1000多行代码全部都是python，C++平时比赛的时候用</p>','<div class="container">    <div class="language">        <div class="language-name">HTML</div>        <div class="progress-bar">            <div class="progress" data-progress="60"></div>        </div>    </div>    <div class="language">        <div class="language-name">Python</div>        <div class="progress-bar">            <div class="progress" data-progress="70"></div>        </div>    </div>    <div class="language">        <div class="language-name">C++</div>        <div class="progress-bar">            <div class="progress" data-progress="50"></div>        </div>    </div></div>']
         let i = 0;
         setInterval(() => {
             if (i < text.length) {
