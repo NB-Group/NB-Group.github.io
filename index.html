@@ -18,8 +18,9 @@
 	<meta name="description" content="Author:SimonMa,Category:Personal Blog">
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<meta name="description" content="梁皓文的个人主页,梁皓文是谁？梁皓文目前就读于目前就读于上海市陆行中学北校，Github@NB-Group">
-	<meta name="keywords" content="NB-Group,梁皓文,Github@NB-Group,梁皓文是谁">
+	<meta name="description" content="梁皓文的个人主页,梁皓文目前就读于目前就读于上海市陆行中学北校，Github@NB-Group">
+	<meta name="keywords" content="NB-Group,梁皓文,Github@NB-Group,梁皓文是谁,谁是梁皓文">
+	
 	<!--[if lt IE 9]><style>.alert { padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px } .alert-danger { background-color: #f2dede; border-color: #ebccd1; color: #a94442; border-bottom: 1px solid #ebccd1 } .alert-link { color: #843534; font-weight: bold } .topframe { margin: 0; padding-left: 15px; padding-right: 15px; text-align: center; border-radius: 0; position: fixed; left: 0; right: 0; top: 0; z-index: 1000 }
 </style><div class="alert alert-danger topframe">你的浏览器实在<strong>太太太太太太旧了</strong>，放学别走，升级完浏览器再说<a class="alert-link" target="_blank" href="http://browsehappy.com">立即升级</a></div><script src="https://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script><script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script><![endif]-->
 </head>
@@ -28,6 +29,33 @@
 
 <body>
 	<main>
+		<!-- <div id="loader-container">
+        	<div id="loader"></div>
+   		</div> -->
+		<style>
+			#loader-container {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			#loader {
+				border: 8px solid #f3f3f3;
+				border-top: 8px solid #3498db;
+				border-radius: 50%;
+				width: 50px;
+				height: 50px;
+				animation: spin 1s linear infinite;
+			}
+
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+
+		</style>
+
 		<div class="content content-intro">
 			<div class="content-inner"><canvas id="background"></canvas>
 				<div class="wrap fade"><a class="github-corner" href="https://github.com/nb-group"
@@ -99,10 +127,10 @@
 						<h2 id="signature" data-translate="signature">Code &amp; Input &amp; Output</h2>
 					</header>
 					<ul>
-						<li><a href="./blog.html" aria-label="Blog"><i class="icon icon-bokeyuan"></i><span
-									data-translate="Blog">Blog</span></a></li>
-						<li><a href="./about.html" aria-label="About"><i class="icon icon-xiaolian"></i><span
-									data-translate="About">About</span></a></li>
+						<li><a href="./Information.html" aria-label="Blog"><i class="icon icon-bokeyuan"></i><span
+									data-translate="Information">Information</span></a></li>
+						<li><a href="./project.html" aria-label="About"><i class="icon icon-xiaolian"></i><span
+									data-translate="project">project</span></a></li>
 						<li><a href="NB-Group@qq.com" aria-label="Email" target="_blank"><i
 									class="icon icon-email"></i><span data-translate="Email">Email</span></a></li>
 						<li><a href="https://github.com/nb-group" aria-label="Github" target="_blank"><i

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人信息</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.body.style.background = "linear-gradient(135deg, #a1c4fd, #c2e9fb)";
+
+      // id=1的元素删除hide class
+      setTimeout(function () {
+        document.getElementById("1").classList.remove("hide");
+      }, 100);
+
+      setTimeout(function () {
+        document.getElementById("2").classList.remove("hide");
+        // Add typewriter effect to the second column of the table
+        typeWriter("introduction", 1);
+      }, 300);
+
+      function typeWriter(tableId, columnIndex) {
+        var table = document.getElementById(tableId);
+        var cells = table.getElementsByTagName("td");
+        var text = cells[columnIndex].innerText; // Use innerText here
+        cells[columnIndex].innerText = ""; // Clear the content
+
+        function type(i) {
+          if (i < text.length) {
+            cells[columnIndex].innerText += text.charAt(i);
+            setTimeout(function () {
+              type(i + 1);
+            }, 10); // Adjust the typing speed here (milliseconds)
+          }
+        }
+
+        type(0);
+      }
+
+    });
+  </script>
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      width: 80%;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.352);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease-out;
+      backdrop-filter: blur(80px) saturate(1.3);
+      opacity: 1;
+      transition: all 0.5s;
+
+    }
+
+    .container:hover {
+      background: rgba(255, 255, 255, 0.626);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    #personalInfo {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    #infoTable {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    #infoTable td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #infoTable td.birthdate {
+      font-style: italic;
+    }
+
+    .blur-background {
+      background: url('background-image.jpg') center/cover no-repeat fixed;
+      filter: blur(10px);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: -1;
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+
+<body style="background: black;">
+  <div class="container hide" id="1">
+    <div id="personalInfo">个人信息</div>
+    <table id="infoTable">
+      <tr>
+        <td>姓名</td>
+        <td>梁皓文</td>
+      </tr>
+      <tr>
+        <td>学校</td>
+        <td>毕业于：上海福山证大外国语小学<br>就读于：上海市陆行中学北校</td>
+      </tr>
+      <tr>
+        <td>生日</td>
+        <td class="birthdate">2011/11/17</td>
+      </tr>
+      <tr>
+        <td>年龄</td>
+        <td>自己算</td>
+      </tr>
+      <tr>
+        <td>身份</td>
+        <td>目前读六年级 / 上下左右前后端程序员 / AI训练师</td>
+      </tr>
+      <tr>
+        <td>学习成绩</td>
+        <td>距离目前最近的一次月考，总分全班第一，年级第三。（2023/12/12更新）</td>
+      </tr>
+      <tr>
+        <td>获奖信息</td>
+        <td>40多张奖状，4个奖品和3个奖杯，懒得一一列举了😊</td>
+      </tr>
+      <tr>
+        <td>喜欢的游戏</td>
+        <td>Minecraft,CODM,和平精英,edge自带的小游戏,Google Chrome自带的小恐龙</td>
+      </tr>
+    </table>
+  </div>
+  <div class="container hide" id="2">
+    <div id="personalInfo">自我介绍</div>
+    <table id="introduction">
+      <tr>
+        <td></td>
+        <td>生活如同一幅绚烂多彩的画卷，而我，是这画卷中一抹明亮的色彩，充满朝气与活力。时光荏苒，眨眼间我已经迈入了六年级的大门，时光的雕刻在我身上留下了青春的印记。
+          <br><br>
+          我怀揣着对编程的深沉热爱。编程，是我创造、思考、突破的桥梁，它让我沉浸在代码的世界里，感受着数学和逻辑的美妙交融。
+          <br><br>
+          “学如逆水行舟，不进则退。”在学海的征程中，我努力向前，奋发向上。我是同学们眼里品学兼优的学霸，老师眼里的三好学生。知识的力量无穷无尽，而持续学习则是通向智慧巅峰的阶梯。
+          <br><br>
+          正如孟子所言：“穷则独善其身，达则兼济天下。”我秉持着积极向上的人生态度，努力不懈地追求自己的梦想，同时也希望通过自己的努力，为班级、为学校带来更多的光彩。
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div><br><br><br><br>
+    <div>
+      <!-- 《懒得写css》 -->
+</body>
+
+</html>
