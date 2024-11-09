@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动全屏播放视频</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+        #fullscreenOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #myVideo {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="fullscreenOverlay">
+    请横屏播放以获得更好的体验<br>点击任意位置继续
+</div>
+
+<!-- 加入了 loop 属性实现循环播放 -->
+<video id="myVideo" loop playsinline>
+    <source src="1.mp4" type="video/mp4">
+    您的浏览器不支持视频播放。
+</video>
+
+<script>
+    const video = document.getElementById('myVideo');
+
+    document.getElementById('myVideo').removeAttribute('controls')
+    const fullscreenOverlay = document.getElementById('fullscreenOverlay');
+
+    // 定义全屏播放的函数
+    function playFullScreen() {
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari 和 Opera
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+            document.documentElement.msRequestFullscreen();
+        }
+
+        // 播放视频
+        video.play().catch(error => {
+            console.log("播放失败：", error);
+        });
+    }
+
+    // 点击覆盖标签时，移除标签并全屏播放视频
+    fullscreenOverlay.addEventListener('click', () => {
+        fullscreenOverlay.style.display = 'none'; // 隐藏覆盖标签
+        playFullScreen(); // 全屏播放视频
+    });
+</script>
+
+</body>
+</html>
