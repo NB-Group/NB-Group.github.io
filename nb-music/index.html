@@ -3,11 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-        <title>NB-Music 音乐播放器</title>
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <title>NB Music 音乐播放器</title>
     </head>
     <body>
-        <mdui-button>测试按钮</mdui-button>
+        <mdui-top-app-bar class="app-bar">
+            <mdui-button-icon disabled>
+                <img src="/NB-Music.png" alt="NB Logo" width="26" />
+            </mdui-button-icon>
+            <mdui-top-app-bar-title>NB Music</mdui-top-app-bar-title>
+            <mdui-button-icon id="change-mode">
+                <mdui-icon-light-mode--rounded></mdui-icon-light-mode--rounded>
+            </mdui-button-icon>
+        </mdui-top-app-bar>
+        <div class="content">
+            <div class="title">
+                <img src="/NB-Music.png" alt="NB Logo" />
+                <h1>
+                    <span class="n">N</span><span class="hide">ew </span><span class="b">B</span><span class="hide">it</span>
+                    <span class="m">Music</span>
+                </h1>
+            </div>
+            <div class="page1">
+                <h1>你的下一个播放器，何必是播放器</h1>
+                <h2>由NB-Group和User782Tec带来的开源免费在线音频播放器项目</h2>
+            </div>
+        </div>
     </body>
     <script type="module" src="./src/index.js"></script>
 </html>
