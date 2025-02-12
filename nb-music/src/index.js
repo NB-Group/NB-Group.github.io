@@ -11,4 +11,7 @@ document.getElementById("change-mode").addEventListener("click", function () {
     } else {
         this.innerHTML = "<mdui-icon-light-mode--rounded></mdui-icon-light-mode--rounded>";
     }
+    document.querySelectorAll("iframe.app").forEach((element) => {
+        element.contentDocument.querySelector(":root").classList.toggle("light");
+    });
 });
