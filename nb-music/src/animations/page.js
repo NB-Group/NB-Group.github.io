@@ -47,11 +47,11 @@ export function page() {
         [
             gsap.set($app(".player-content .cover-img"), {
                 attr: {
-                    src: "/app-res/posterA.png"
+                    src: "./app-res/posterA.png"
                 }
             }),
             gsap.set($app(":root"), {
-                "--bgul": "url('/app-res/posterA.png')"
+                "--bgul": "url('./app-res/posterA.png')"
             }),
             gsap.set($app(".player-content .info .title"), {
                 textContent: "天使のクローバー（天使的幸运草）【『世界计划 多彩舞台』主题原创曲】"
@@ -64,7 +64,7 @@ export function page() {
             }),
             gsap.set($app("#playing-list .song .poster"), {
                 attr: {
-                    src: "/app-res/posterA.png"
+                    src: "./app-res/posterA.png"
                 }
             }),
             gsap.set($app("#playing-list .song .name"), {
@@ -176,11 +176,11 @@ export function page() {
         [
             gsap.set($app(".player-content .cover-img"), {
                 attr: {
-                    src: "/app-res/posterB.png"
+                    src: "./app-res/posterB.png"
                 }
             }),
             gsap.set($app(":root"), {
-                "--bgul": "url('/app-res/posterB.png')"
+                "--bgul": "url('./app-res/posterB.png')"
             }),
             gsap.set($app(".player-content .info .title"), {
                 textContent: "JUMPIN’ OVER !【『世界计划 多彩舞台』主题原创曲】"
@@ -193,7 +193,7 @@ export function page() {
             }),
             gsap.set($app("#playing-list .song .poster"), {
                 attr: {
-                    src: "/app-res/posterB.png"
+                    src: "./app-res/posterB.png"
                 }
             }),
             gsap.set($app("#playing-list .song .name"), {
