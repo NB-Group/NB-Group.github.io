@@ -505,11 +505,11 @@ export function page() {
     scroll.add([
         gsap.set($app(".player-content .cover-img"), {
             attr: {
-                src: "/poster.png"
+                src: "./poster.png"
             }
         }),
         gsap.set($app(":root"), {
-            "--bgul": "url('/poster.png')"
+            "--bgul": "url('./poster.png')"
         }),
         gsap.set($app(".player-content .info .title"), {
             textContent: "歌曲名"
@@ -519,7 +519,7 @@ export function page() {
         }),
         gsap.set($app("#playing-list .song .poster"), {
             attr: {
-                src: "/poster.png"
+                src: "./poster.png"
             }
         }),
         gsap.set($app("#playing-list .song .name"), {
