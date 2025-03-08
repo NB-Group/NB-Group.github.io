@@ -1,0 +1,174 @@
+/**
+ * 移动端显示修复
+ * 提供针对特定移动端问题的修复样式
+ */
+
+/* 下载区域的移动端优化 */
+.mobile-device .glass-card.layered-card {
+  transform: none !important; /* 禁用可能导致显示问题的3D变换 */
+}
+
+.mobile-device .logo3d-container {
+  perspective: none; /* 简化3D视差效果 */
+}
+
+/* 改进下载选项的触摸反馈 */
+.download-option {
+  position: relative;
+  -webkit-tap-highlight-color: transparent; /* 移除默认触摸高亮 */
+}
+
+.download-option:active {
+  background-color: var(--card-bg-hover);
+}
+
+.mobile-device .download-option::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  border-radius: inherit;
+  transition: background-color 0.2s;
+}
+
+.mobile-device .download-option:active::after {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 推荐下载选项高亮 */
+.download-option.recommended {
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.recommended-tag {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  background: var(--accent-color);
+  color: white;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* 移动设备不支持标记 */
+.download-option.not-supported {
+  opacity: 0.7;
+  background: var(--bg-secondary);
+}
+
+.mobile-device-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* 移动设备下载提示 */
+.mobile-download-note {
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.mobile-download-note .info-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.mobile-download-note p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* 选项高亮动画 */
+@keyframes highlight-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(var(--accent-color-rgb), 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(var(--accent-color-rgb), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--accent-color-rgb), 0); }
+}
+
+.highlight-option {
+  animation: highlight-pulse 1s 2;
+}
+
+/* 修复视觉差元素在不同移动设备上的问题 */
+.mobile-device .parallax-bg {
+  background-attachment: scroll !important;
+}
+
+.mobile-device .texture-container {
+  opacity: 0.3; /* 降低纹理层的显著性，提高可读性 */
+}
+
+/* 改进表单元素在移动设备上的体验 */
+.mobile-device input,
+.mobile-device select,
+.mobile-device textarea {
+  font-size: 16px !important; /* 防止iOS自动缩放 */
+}
+
+/* 修复特性展示部分在小屏幕上的布局 */
+@media (max-width: 480px) {
+  .feature-showcase {
+    flex-direction: column;
+  }
+  
+  .feature-showcase.reverse {
+    flex-direction: column-reverse;
+  }
+  
+  .feature-detail,
+  .feature-image {
+    width: 100%;
+  }
+  
+  .feature-image .glass-image-wrapper {
+    margin: 0 auto;
+    max-width: 90%;
+  }
+}
+
+/* 更好的移动端滚动条 */
+.mobile-device {
+  scrollbar-width: thin;
+}
+
+.mobile-device::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-device::-webkit-scrollbar-thumb {
+  background-color: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+/* 修复iOS特有的一些问题 */
+@supports (-webkit-touch-callout: none) {
+  /* iOS特定修复 */
+  .glass-effect {
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+  
+  /* iOS输入框修复 */
+  input, select, textarea {
+    font-size: 16px; /* 防止iOS缩放 */
+  }
+}
+
+/* 修复大屏移动设备(如iPad)的布局 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .download-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}

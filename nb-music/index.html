@@ -1,69 +1,527 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <title>NB Music 音乐播放器</title>
-    </head>
-    <body>
-        <mdui-top-app-bar class="app-bar">
-            <mdui-button-icon disabled>
-                <img src="/NB-Music.png" alt="NB Logo" width="26" />
-            </mdui-button-icon>
-            <mdui-top-app-bar-title>NB Music</mdui-top-app-bar-title>
-            <mdui-button-icon id="change-mode">
-                <mdui-icon-light-mode--rounded></mdui-icon-light-mode--rounded>
-            </mdui-button-icon>
-        </mdui-top-app-bar>
-        <div class="cover">
-            <img src="/NB-Music.png" alt="NB Logo" />
-            <h1>
-                <span class="n">N</span><span class="hide">ew </span><span class="b">B</span><span class="hide">it</span>
-                <span class="m">Music</span>
-            </h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NB Music - 跨平台自由听歌体验</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/textures.css">
+    <link rel="stylesheet" href="styles/effects.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/modern-theme.css">
+    <link rel="stylesheet" href="styles/fixes.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/mobile-fixes.css">
+    <meta name="description" content="NB Music - 由初中生开发的跨平台音乐播放器，无需VIP即可畅听全网音乐">
+    <!-- 添加GSAP动画库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+</head>
+
+<body class="typography-premium texture-overlay">
+    <!-- 预加载动画 -->
+    <div class="preloader">
+        <div class="loader">
+            <svg class="music-loader" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+            <div class="loader-progress"></div>
         </div>
-        <iframe src="/real-app.html" frameborder="0" class="app"></iframe>
-        <div class="content">
-            <div class="page1">
-                <div class="text">
-                    <h1>你的下一个播放器，<br />何必是播放器。</h1>
-                    <h2>由NB-Group和User782Tec<br />打造的开源免费在线音频播放器项目。</h2>
+    </div>
+
+    <!-- 高级动态背景元素 -->
+    <div class="dynamic-bg-container">
+        <div class="dynamic-light" style="top: 15%; left: 5%"></div>
+        <div class="dynamic-light" style="top: 60%; left: 80%"></div>
+        <div class="dynamic-light" style="top: 85%; left: 30%"></div>
+    </div>
+
+    <!-- 全局纹理背景 -->
+    <div class="texture noise-texture"></div>
+
+    <!-- 装饰性几何元素 -->
+    <div class="geometric-element geo-1"></div>
+    <div class="geometric-element geo-2"></div>
+    <div class="geometric-element geo-3"></div>
+
+    <div class="theme-toggle">
+        <button id="theme-toggle-btn" aria-label="切换深色模式">
+            <svg class="sun-icon" viewBox="0 0 24 24">
+                <path
+                    d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5-5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm-9 4.5H1v-3h2v3zm20 0h-2v-3h2v3zM12 1v2c-5 0-9 4-9 9H1c0-6.08 4.92-11 11-11zm0 22v-2c5 0 9-4 9-9h2c0 6.08-4.92 11-11 11zM3.5 7.88l-1.42-1.41 1.41-1.42 1.42 1.42L3.5 7.88zm15.46-5.54l-1.42-1.41 1.42-1.42 1.41 1.42-1.41 1.41zM3.5 18.12l-1.41-1.42 1.41-1.41 1.42 1.41-1.42 1.42zm15.46 0l-1.41-1.42 1.42-1.41 1.41 1.41-1.42 1.42z" />
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24">
+                <path
+                    d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+    <nav class="main-nav">
+        <div class="logo">NB Music</div>
+        <ul class="nav-links">
+            <li><a href="#features">特点</a></li>
+            <li><a href="#experience">体验</a></li>
+            <li><a href="#download">下载</a></li>
+            <li><a href="#about">关于我们</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <!-- 英雄区域动态纹理 -->
+        <div class="texture hero-texture"></div>
+        <div class="texture-container">
+            <div class="moving-dot"></div>
+            <div class="moving-dot"></div>
+            <div class="moving-dot"></div>
+        </div>
+
+        <!-- 动态背景形状 -->
+        <div class="hero-bg">
+            <div class="hero-bg-circle circle-1"></div>
+            <div class="hero-bg-circle circle-2"></div>
+        </div>
+
+        <!-- 装饰性SVG音符 -->
+        <div class="floating-notes">
+            <svg class="note note-1" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+            <svg class="note note-2" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+            <svg class="note note-3" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+            </svg>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="fade-in glowing-text" data-text="NB Music" data-scramble>NB Music</h1>
+                <div class="subtitle-container">
+                    <p class="subtitle fade-in delay-1">由初中生打造的<span class="highlight">基于B站的跨平台开源音乐播放器</span></p>
+                </div>
+                <p class="description fade-in delay-2">无需VIP，畅听全网音乐</p>
+                <div class="cta-buttons fade-in delay-3">
+                    <a href="#download" class="primary-button button-3d">
+                        <span class="button-inner">立即体验</span>
+                        <span class="button-glow"></span>
+                    </a>
+                    <a href="https://github.com/NB-Group/NB_Music" class="secondary-button magnetic-button">
+                        <svg class="github-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        <span>查看源码</span>
+                    </a>
                 </div>
             </div>
-            <div class="page2">
-                <div class="text">
-                    <h1>任何歌曲*。<br />任何免费。</h1>
-                    <h2>从 Bilibili 获取音乐，<br />从网易云音乐获取歌词，<br />畅听大量免费歌曲</h2>
-                    <p style="color: darkgray; font-size: 1em">*指在 Bilibili 上大部分公开的用户生成内容（UGC），<br />不包括充电视频</p>
-                </div>
-            </div>
-            <div class="page3">
-                <div class="text">
-                    <h1>随心所欲。</h1>
-                    <h2>搜索音乐，一键播放。</h2>
-                </div>
-            </div>
-            <div class="page4">
-                <div class="text">
-                    <h1>遇见美好。</h1>
-                    <h2>收藏音乐，享受惬意时光。</h2>
-                </div>
-            </div>
-            <div class="page5">
-                <div class="text">
-                    <h1>井然有序。<br />锋利暴击。</h1>
-                    <h2>强悍性能融入超薄、超轻、<br />超便携的歌单设计中。<br />支持一键丝滑导入 Bilibili 收藏夹</h2>
-                </div>
-            </div>
-            <div class="page6">
-                <div class="text">
-                    <h1>自定义选项。<br />个性绽放。</h1>
-                    <h2>超多自定义选项，<br />打造专属于您的个性化播放器</h2>
+
+            <div class="hero-image-container">
+                <div class="tilt-effect premium-glow">
+                    <img src="img/screenshot-main.png" alt="NB Music 界面展示" class="hero-image">
                 </div>
             </div>
         </div>
-        <div class="scroll-element"></div>
-    </body>
-    <script type="module" src="./src/index.js"></script>
+
+        <!-- 增加3D背景漂浮元素 -->
+        <div class="floating-elements">
+            <div class="floating-element" style="top: 15%; left: 10%; width: 60px; height: 60px;" data-depth="0.2">
+            </div>
+            <div class="floating-element" style="top: 70%; left: 85%; width: 80px; height: 80px;" data-depth="0.6">
+            </div>
+            <div class="floating-element" style="top: 30%; left: 80%; width: 40px; height: 40px;" data-depth="0.4">
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 添加统计数据展示 -->
+    <!-- <section class="stats-section">
+        <div class="texture subtle-stripe"></div>
+        <div class="stats-container">
+            <div class="stat-item" data-animate="fade-up">
+                <div class="stat-number" data-count="100000">0</div>
+                <div class="stat-label">用户下载</div>
+            </div>
+            <div class="stat-item" data-animate="fade-up" data-delay="0.2">
+                <div class="stat-number" data-count="50000000">0</div>
+                <div class="stat-label">播放次数</div>
+            </div>
+            <div class="stat-item" data-animate="fade-up" data-delay="0.4">
+                <div class="stat-number" data-count="98">0</div>
+                <div class="stat-label">GitHub Stars</div>
+            </div>
+        </div>
+    </section> -->
+
+    <section id="features" class="features">
+        <div class="texture features-texture"></div>
+        <div class="texture-plus" style="top: 20%; left: 10%"></div>
+        <div class="texture-plus" style="top: 60%; right: 15%"></div>
+
+        <div class="section-title">
+            <h2>听音乐，从未如此自由</h2>
+            <p>摆脱平台限制，享受纯粹的音乐体验</p>
+        </div>
+
+        <div class="feature-cards">
+            <div class="feature-card ultra-card reveal" data-animate="fade-up">
+                <div class="feature-icon">🎵</div>
+                <h3>全网音乐自由播放</h3>
+                <p>包括其他平台VIP专属歌曲，通过哔哩哔哩资源，突破限制</p>
+            </div>
+
+            <div class="feature-card ultra-card reveal" data-animate="fade-up" data-delay="0.2">
+                <div class="feature-icon">📋</div>
+                <h3>B站收藏夹一键导入</h3>
+                <p>将您喜爱的B站音频直接导入成歌单，无缝衔接您的音乐体验</p>
+            </div>
+
+            <div class="feature-card ultra-card reveal" data-animate="fade-up" data-delay="0.4">
+                <div class="feature-icon">🎤</div>
+                <h3>智能歌词捕捉系统</h>
+                    <p>自动匹配与手动补全的双重保障，让每一首歌都有歌词相伴</p>
+            </div>
+        </div>
+
+        <!-- 添加装饰性分割线 -->
+        <div class="decorative-line"></div>
+
+        <!-- 特色亮点区 -->
+        <div class="highlights-section">
+            <div class="highlights-title" data-animate="fade-up">
+                <h3>强大功能，极简设计</h3>
+                <p>专为音乐爱好者打造的流畅体验</p>
+            </div>
+
+            <div class="highlights-grid">
+                <div class="highlight-item" data-animate="zoom-in">
+                    <div class="highlight-icon">🎵</div>
+                    <div class="highlight-text">无VIP畅听</div>
+                </div>
+                <div class="highlight-item" data-animate="zoom-in" data-delay="0.1">
+                    <div class="highlight-icon">📁</div>
+                    <div class="highlight-text">B站收藏夹</div>
+                </div>
+                <div class="highlight-item" data-animate="zoom-in" data-delay="0.2">
+                    <div class="highlight-icon">🎤</div>
+                    <div class="highlight-text">智能歌词</div>
+                </div>
+                <div class="highlight-item" data-animate="zoom-in" data-delay="0.3">
+                    <div class="highlight-icon">🔄</div>
+                    <div class="highlight-text">跨平台支持</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="parallax-section">
+        <div class="parallax-bg"></div>
+        <div class="texture dot-texture"></div>
+        <div class="parallax-content">
+            <h2>初中生の宣言</h2>
+            <p>我们才不是只会做题的小可爱！<br>用Electron+各大API，带你体验真正的白嫖听歌自由ψ(｀∇´)ψ</p>
+        </div>
+    </section>
+
+    <!-- 添加3D技术展示区 -->
+    <section class="tech-showcase">
+        <div class="texture grid-texture"></div>
+
+        <div class="section-title" data-animate="fade-up">
+            <h2>核心技术</h2>
+            <p>无限可能背后的技术栈</p>
+        </div>
+
+        <div class="tech-container">
+            <div class="tech-item" data-animate="fade-up">
+                <div class="tech-logo electron-logo">
+                    <img src="https://www.electronjs.org/zh/assets/img/logo.svg" alt="Electron">
+                </div>
+                <h4>Electron</h4>
+                <p>跨平台桌面应用引擎</p>
+            </div>
+
+            <div class="tech-item" data-animate="fade-up" data-delay="0.4">
+                <div class="tech-logo css-logo">
+                    <svg style="width: 100%;height: 100%;" xmlns="http://www.w3.org/2000/svg" width="16"
+                        height="16" fill="currentColor" class="bi bi-filetype-css" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.397 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495ZM6.78 15.29a1.176 1.176 0 0 1-.111-.449h.764a.578.578 0 0 0 .255.384c.07.049.154.087.25.114.095.028.201.041.319.041.164 0 .301-.023.413-.07a.559.559 0 0 0 .255-.193.507.507 0 0 0 .085-.29.387.387 0 0 0-.153-.326c-.101-.08-.256-.144-.463-.193l-.618-.143a1.72 1.72 0 0 1-.539-.214 1 1 0 0 1-.351-.367 1.068 1.068 0 0 1-.123-.524c0-.244.063-.457.19-.639.127-.181.303-.322.527-.422.225-.1.484-.149.777-.149.304 0 .564.05.779.152.217.102.384.239.5.41.12.17.187.359.2.566h-.75a.56.56 0 0 0-.12-.258.624.624 0 0 0-.246-.181.923.923 0 0 0-.37-.068c-.216 0-.387.05-.512.152a.472.472 0 0 0-.184.384c0 .121.047.22.143.3a.97.97 0 0 0 .404.175l.621.143c.217.05.406.12.566.211.16.09.285.21.375.358.09.148.135.335.135.56 0 .247-.063.466-.188.656a1.216 1.216 0 0 1-.539.439c-.234.105-.52.158-.858.158-.254 0-.476-.03-.665-.09a1.404 1.404 0 0 1-.478-.252 1.13 1.13 0 0 1-.29-.375Z" />
+                    </svg>
+                </div>
+                <h4>原生CSS</h4>
+                <p>精致UI与流畅动效</p>
+            </div>
+
+            <div class="tech-item" data-animate="fade-up" data-delay="0.6">
+                <div class="tech-logo github-logo">
+                    <svg style="width: 100%;height: 100%;" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                      </svg>
+                </div>
+                <h4>GitHub Actions</h4>
+                <p>自动化构建与发布</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="experience">
+        <div class="texture experience-texture"></div>
+        <div class="texture-plus" style="bottom: 30%; left: 20%"></div>
+
+        <div class="section-title">
+            <h2>沉浸式体验</h2>
+            <p>细节之处，彰显用心</p>
+        </div>
+
+        <div class="feature-showcase">
+            <div class="feature-detail reveal-left depth-card">
+                <h3>B站资源无缝衔接</h3>
+                <p>我们从B站自动抓取最高音质版本，Hi-Res音质等你来听。收藏夹转歌单，一键即可完成。</p>
+                <ul class="feature-list">
+                    <li>最高音质自动抓取</li>
+                    <li>支持Hi-Res音频（大会员）</li>
+                    <li>收藏夹智能转换</li>
+                </ul>
+            </div>
+            <div class="feature-image reveal-right">
+                <div class="parallax-hover lighting-effect">
+                    <img src="img/bilibili-feature.png" alt="B站资源集成功能" class="rounded-image parallax-layer"
+                        data-depth="0.1">
+                    <!-- 添加装饰元素 -->
+                    <div class="image-decoration parallax-layer" data-depth="0.2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-showcase reverse">
+            <div class="feature-detail reveal-right">
+                <h3>智能歌词捕捉系统</h3>
+                <p>无缝同步的歌词体验，让音乐更有感染力。自动从网易云抓取，匹配不准？手动纠正一键搞定！</p>
+                <ul class="feature-list">
+                    <li>自动歌词匹配</li>
+                    <li>多源智能检索</li>
+                    <li>手动纠错备选</li>
+                </ul>
+            </div>
+            <div class="feature-image reveal-left">
+                <div class="glass-image-wrapper">
+                    <img src="img/lyrics-feature.png" alt="智能歌词系统" class="rounded-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 修复下载区域，添加清晰的下载按钮 -->
+    <section id="download" class="download gradient-bg">
+        <div class="texture wave-texture"></div>
+
+        <!-- 3D展示标志 -->
+        <div class="logo3d-container" data-animate="fade-up">
+            <div class="logo3d">
+                <div class="logo3d-layer">
+                    <div class="logo-text">NB Music</div>
+                </div>
+                <div class="logo3d-layer">
+                    <div class="logo-text">NB Music</div>
+                </div>
+                <div class="logo3d-layer">
+                    <div class="logo-text">NB Music</div>
+                </div>
+                <div class="logo3d-glow"></div>
+            </div>
+        </div>
+
+        <div class="glass-card layered-card">
+            <h2>立即体验 NB Music</h2>
+            <p>最新版本已发布，支持 Windows、macOS 和 Linux</p>
+
+            <div class="download-options">
+                <a href="https://github.com/NB-Group/NB_Music/releases/latest/download/NB-Music-Setup.exe"
+                    class="download-option windows neon-effect">
+                    <div class="os-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
+                        </svg>
+                    </div>
+                    <div class="os-info">
+                        <h4>Windows</h4>
+                        <span>v2.1.0</span>
+                    </div>
+                </a>
+                <a href="https://github.com/NB-Group/NB_Music/releases/latest/download/NB-Music.dmg"
+                    class="download-option mac neon-effect">
+                    <div class="os-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                        </svg>
+                    </div>
+                    <div class="os-info">
+                        <h4>macOS</h4>
+                        <span>v2.1.0</span>
+                    </div>
+                </a>
+                <a href="https://github.com/NB-Group/NB_Music/releases/latest/download/NB-Music-Linux.AppImage"
+                    class="download-option linux neon-effect">
+                    <div class="os-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.105c-.26.125-.27.354-.065.585.795 1.439 1.99 1.5 3.1 1.5.398 0 1.41.5 1.424.5h.59c1.626 1.975 3.748 2.211 4.916 2.211.516 0 .871-.317.736-.584-.085-.17-.08-.17.31-.34a.638.638 0 00.394-.484c.218-.87.27-.87.848-.442.08.059.235.137.381.202.145.065.298.121.42.161a.353.353 0 00.337-.132.355.355 0 00-.152-.195c-.26-.093-1.012-.32-1.257-.296-.121.012-.309.195-.45.33-1.16-.358-2.713-1.542-2.692-2.89.365.056.933.303.705-.111-.179-.331-.712-.513-.777-.795.22.132.165-.451.13-.477-.118-.09-1.118-.336-1.24-.693-.106-.308.513-.682.64-.738.106-.044.205-.066.405.173.315.363.675.348.675.348zm4.43 7.34c.481-.187.517-.236.919.256.244.297.551.309.568.518l-.123.074a.709.709 0 00-.401-.215c-.035.009-.215-.008-.331.07-.303.19-.242.282-.576.323l-.046.125c-.264.248-.607.476-.85.437-.34-.054-.315-.346-.63-.474-.2-.08-.398-.026-.514-.291-.16-.37.25-.4.335-.581-.073-.191-.274-.285-.364-.531-.04-.11-.143-.22-.128-.342.045-.346.487-.091.784-.037.218.04.438.155.605.313l.124.354c.294.214.638.191.878.047l.124.124zm-7.543.568c.212.045.338.235.313.505-.031.325-.168.515-.168.78 0 .196.068.27.014.541-.072.37-.454.7-.905.7a.498.498 0 01-.463-.26.555.555 0 01-.09-.12c-.07-.24-.036-.675.254-1.367.32-.767.681-.834.903-.828a.534.534 0 01.142.049zm7.913.987c.057.088.124.205.19.297.223.06.384-.012.64-.731.137-.399.183-.583-.36-.57.288.647.155.845-.47 1.004zm-8.293-.161c.064.043.089.066.178.107.271.124.348.186.331.38-.012.143-.129.21-.142.465-.01.191.111.245.138.283.102.143.156.274.257.382.193.208.329.37.337.9.004.33-.013.313.01.446.022.134.196.132.244.085.028-.028.033-.053.035-.067l.042-.19a.234.234 0 00-.043-.197.544.544 0 01-.082-.277c-.004-.36.142-.492.19-.677.08-.308-.034-.513-.075-.834-.031-.242-.085-.374-.394-.374-.155 0-.28.06-.337.08-.074.025-.22.08-.196-.068 0 0 0-.018.022-.92.065-.21.495-.362.579-.382.183-.042.318-.02.355-.009a.495.495 0 01.342.455.27.27 0 01-.029.13c-.02.046-.03.056-.055.083-.062.07-.198.07-.198.07s.02-.015.02-.07c0-.05-.055-.119-.119-.119-.07 0-.115.056-.116.124a.12.12 0 00.117.125.155.155 0 00.152-.156.159.159 0 00-.157-.158.155.155 0 00-.156.157.163.163 0 00.158.157.159.159 0 00.157-.158.155.155 0 00-.156-.156.163.163 0 00-.157.158.165.165 0 00.158.156.163.163 0 00.157-.156.172.172 0 00-.158-.16c-.032 0-.068.012-.08.015-.075.023-.152.055-.191.109a.278.278 0 00-.044.181.212.212 0 00.064.135c.082.077.128.115.125.132a.113.113 0 01-.05.101.12.12 0 01-.102.013c-.027-.01-.064-.049-.166-.152-.104-.105-.162-.119-.162-.161 0-.042.056-.075.093-.074.038 0 .055.022.055.022s-.01-.025-.037-.042a.742.742 0 00-.15-.054c-.033-.01-.06-.024-.06-.063l-.002.015zm9.889.201c-.265-.052-.784-.062-.856.302-.193.984.13 1.44.13 1.44.133-.735.756-.936.59-1.5.608.195.571.928.578 1.356.008.463.166.833.326.947-.03-.252-.043-.767.242-1.266.602-1.056-.013-1.25-.013-1.25.21.581-.301 1.312-.868 1.478.023-.745-.278-1.437-.13-2.507zm-11.59 4.427c.367-.07 1.268.311 1.835.51.292.103.648.262.895.452.62.476.7.516.73.854.022.257.045.535.092.835.11.9.337 1.539.79 1.898.479.38 1.452.691 2.274.296.22.238.518.39.695.545.246.215.411.452.411.452s.695-.036.83-.626c.257-.673-.137-1.554-.137-1.554.118-.354.046-.597-.314-1.006-.167-.189-.34-.31-.515-.406.217-.16.773-.499.64-1.26-.121-.697-.597-1.237-.597-1.237s-.337.654-.743.985c-.357.29-.815.441-1.057.441l-.213-.091c-.129-.117-.212-.268-.212-.446 0-.243.148-.44.332-.44a.337.337 0 01.34.337.339.339 0 01-.565.249c-.038-.034-.063-.077-.075-.125a.21.21 0 01-.008-.058.338.338 0 01.174-.294.334.334 0 01.163-.045c.183 0 .333.147.333.333 0 .184-.15.334-.333.334a.336.336 0 01-.334-.324.362.362 0 010-.043c0-.197.13-.318.13-.318s-.036-.14-.301-.214c-.308-.085-.632-.034-.706-.013-.271.076-.516.297-.516.297l.14.314c-.033.021-.452.393-.67.968a1.965 1.965 0 00-.115.667c0 .207.034.407.091.596-.106.004-.339 0-.578-.226-.11-.102-.218-.24-.307-.465-.171-.428-.196-.987-.24-1.293-.048-.326-.048-.73-.28-1.048-.121-.17-.536-.501-.99-.742-.035-.018-1.075-.624-1.313-.758-.137-.076-.28-.174-.28-.296 0-.122.007-.41.007-.41a.355.355 0 01.369-.24z" />
+                        </svg>
+                    </div>
+                    <div class="os-info">
+                        <h4>Linux</h4>
+                        <span>v2.1.0</span>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="progress-bar" style="margin-top: 30px;">
+                <div class="progress-bar-fill" style="--progress-value: 85%"></div>
+            </div>
+            <div class="download-stats">已完成85%的功能，持续迭代中...</div>
+
+            <div class="version-info breathing-glow">
+                <span>自动更新 | 开源免费</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="texture about-texture"></div>
+        <div class="texture-plus" style="top: 30%; right: 15%"></div>
+
+        <div class="section-title">
+            <h2>关于我们</h2>
+            <p>初中生的极客梦想</p>
+        </div>
+
+        <div class="team-info reveal wave-border">
+            <p>NB Music 由 NB-Group 和 User782Tec 两名初中生开发</p>
+            <p class="quote">作业没写完也要写代码的传说！（其实我们成绩都很好的啦）</p>
+        </div>
+
+        <div class="credit-section reveal">
+            <h3>感谢以下开源项目</h3>
+            <div class="credits">
+                <a href="https://gitlab.com/Binaryify/neteasecloudmusicapi"
+                    class="credit-badge">neteasecloudmusicapi</a>
+                <a href="https://github.com/SocialSisterYi/bilibili-API-collect" class="credit-badge">BillBill Api
+                    Collect</a>
+            </div>
+        </div>
+
+        <!-- 添加贡献者荣誉墙 -->
+        <div class="contributors-section" data-animate="fade-up"></div>
+        <h3 style="text-align: center;">贡献者荣誉墙</h3>
+        <div class="contributors-grid">
+            <!-- 贡献者头像将通过JS动态加载 -->
+        </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="texture grid-texture"></div>
+        <div class="footer-content">
+            <div class="footer-logo">NB Music</div>
+            <div class="footer-links">
+                <a href="https://github.com/NB-Group/NB_Music">GitHub</a>
+                <a href="https://github.com/NB-Group/NB_Music/issues">问题反馈</a>
+                <a href="https://github.com/NB-Group/NB_Music/blob/main/LICENSE">许可协议</a>
+            </div>
+            <div class="copyright">
+                © 2023 NB-Group. 基于 <a href="https://github.com/NB-Group/NB_Music/blob/main/LICENSE">GPL-3.0 许可证</a> 开源。
+            </div>
+        </div>
+
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/effects.js"></script>
+    <script src="scripts/advanced-effects.js"></script>
+    <script src="scripts/mobile-adapter.js"></script>
+
+    <script>
+        // 数字计数动画
+        document.addEventListener('DOMContentLoaded', function () {
+            // 延迟执行，确保页面加载完成
+            setTimeout(function () {
+                const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+
+                statNumbers.forEach(stat => {
+                    const targetCount = parseInt(stat.getAttribute('data-count'), 10);
+                    const duration = 2000; // 动画持续时间，2秒
+                    const frameDuration = 1000 / 60; // 60fps
+                    const totalFrames = Math.round(duration / frameDuration);
+                    let frame = 0;
+
+                    const observer = new IntersectionObserver((entries) => {
+                        if (entries[0].isIntersecting) {
+                            // 开始计数动画
+                            const counter = setInterval(() => {
+                                frame++;
+                                // 使用缓动函数使动画更自然
+                                const progress = ease(frame / totalFrames);
+                                const currentCount = Math.round(progress * targetCount);
+
+                                // 格式化大数字，添加千位分隔符
+                                stat.textContent = currentCount.toLocaleString();
+
+                                if (frame === totalFrames) {
+                                    clearInterval(counter);
+                                }
+                            }, frameDuration);
+
+                            observer.disconnect(); // 停止观察
+                        }
+                    }, { threshold: 0.5 });
+
+                    observer.observe(stat);
+                });
+            }, 500);
+
+            // 缓动函数，使数字增长更加自然
+            function ease(t) {
+                return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+            }
+
+            // 加载GitHub贡献者
+            fetch('https://api.github.com/repos/NB-Group/NB_Music/contributors?per_page=8')
+                .then(response => response.json())
+                .then(data => {
+                    const contributorsGrid = document.querySelector('.contributors-grid');
+                    data.forEach(contributor => {
+                        const contributorEl = document.createElement('a');
+                        contributorEl.href = contributor.html_url;
+                        contributorEl.className = 'contributor';
+                        contributorEl.setAttribute('target', '_blank');
+                        contributorEl.innerHTML = `
+                        <img src="${contributor.avatar_url}" alt="${contributor.login}">
+                        <span>${contributor.login}</span>
+                    `;
+                        contributorsGrid.appendChild(contributorEl);
+                    });
+                });
+        });
+    </script>
+</body>
+
 </html>

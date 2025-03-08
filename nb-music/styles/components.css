@@ -1,0 +1,507 @@
+/* 高级UI组件样式集合 */
+
+/* 3D视差标志组件 */
+.logo3d-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 0 auto;
+}
+
+.logo3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(10deg) rotateY(15deg);
+  transition: transform 0.5s cubic-bezier(0.13, 0.53, 0.38, 0.97);
+}
+
+.logo3d-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.logo3d-layer:nth-child(1) { transform: translateZ(40px); }
+.logo3d-layer:nth-child(2) { transform: translateZ(30px); }
+.logo3d-layer:nth-child(3) { transform: translateZ(20px); }
+.logo3d-layer:nth-child(4) { transform: translateZ(10px); }
+.logo3d-layer:nth-child(5) { transform: translateZ(0px); }
+
+.logo3d-layer .logo-text {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 3px 15px var(--glow-color);
+}
+
+.logo3d-glow {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle at center, var(--accent-color) 0%, transparent 70%);
+  opacity: 0.2;
+  filter: blur(20px);
+  transform: translateZ(-20px);
+}
+
+/* 微妙装饰线条 */
+.decorative-line {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--border-color) 20%, 
+    var(--accent-secondary) 50%, 
+    var(--border-color) 80%, 
+    transparent 100%);
+  margin: 3rem 0;
+  opacity: 0.5;
+  overflow: hidden;
+}
+
+.decorative-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    transparent 100%);
+  animation: line-glow 3s infinite;
+}
+
+@keyframes line-glow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* 精美圆点装饰 */
+.dot-decoration {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+}
+
+.dot-decoration .dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--accent-secondary);
+  opacity: 0.3;
+}
+
+.dot-decoration .dot:nth-child(1) { top: 20%; left: 20%; }
+.dot-decoration .dot:nth-child(2) { top: 40%; left: 80%; }
+.dot-decoration .dot:nth-child(3) { top: 70%; left: 30%; }
+.dot-decoration .dot:nth-child(4) { top: 90%; left: 70%; }
+.dot-decoration .dot:nth-child(5) { top: 30%; left: 50%; }
+.dot-decoration .dot:nth-child(6) { top: 80%; left: 10%; }
+.dot-decoration .dot:nth-child(7) { top: 10%; left: 90%; }
+
+/* 精美预加载动画 */
+.fancy-loader {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.loader-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid transparent;
+  border-top-color: var(--accent-color);
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+.loader-circle:nth-child(2) {
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+  border-top-color: var(--accent-secondary);
+  animation-duration: 2s;
+  animation-direction: reverse;
+}
+
+.loader-circle:nth-child(3) {
+  width: 40%;
+  height: 40%;
+  top: 30%;
+  left: 30%;
+  border-top-color: var(--accent-color);
+  animation-duration: 3s;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 浮动标签 */
+.floating-tag {
+  position: relative;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background: var(--accent-secondary);
+  color: var(--accent-color);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  transform: translateY(0);
+  animation: tag-float 3s ease-in-out infinite;
+}
+
+@keyframes tag-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 波浪边框 */
+.wave-border {
+  position: relative;
+  padding: 2rem;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.wave-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-radius: 24px;
+  background: linear-gradient(90deg, 
+    var(--accent-color), 
+    var(--accent-secondary), 
+    var(--accent-color)) border-box;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) padding-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+/* 精美卡片阴影 */
+.premium-shadow {
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.08),
+    0 5px 10px rgba(0, 0, 0, 0.05),
+    0 0 0 1px var(--border-color),
+    inset 0 1px 0 var(--edge-highlight);
+}
+
+/* 3D立体按钮 */
+.button-3d {
+  position: relative;
+  padding: 1rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+  transition: transform 0.2s;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.button-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  border-radius: inherit;
+  transform: translateZ(-6px);
+  filter: brightness(0.8);
+}
+
+.button-3d:active {
+  transform: translateY(3px) translateZ(-3px);
+}
+
+/* 闪亮边框 */
+.glow-border {
+  position: relative;
+  border-radius: 24px;
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: inherit;
+  background: linear-gradient(60deg, 
+    var(--accent-color), 
+    var(--accent-secondary), 
+    var(--accent-color));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.glow-border:hover::before {
+  opacity: 1;
+  animation: rotate-gradient 3s linear infinite;
+}
+
+@keyframes rotate-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 高级徽章 */
+.premium-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.2rem;
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 0 5px 15px var(--glow-color);
+}
+
+.premium-badge::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-shadow: 0 0 10px white;
+}
+
+/* 富有层次感的卡片 */
+.layered-card {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 2rem;
+  transform-style: preserve-3d;
+}
+
+.layered-card::before {
+  content: '';
+  position: absolute;
+  inset: 1rem -0.5rem -0.5rem 1rem;
+  background: var(--accent-secondary);
+  border-radius: 24px;
+  opacity: 0.3;
+  transform: translateZ(-10px);
+}
+
+.layered-card::after {
+  content: '';
+  position: absolute;
+  inset: 2rem -1rem -1rem 2rem;
+  background: var(--accent-secondary);
+  border-radius: 24px;
+  opacity: 0.1;
+  transform: translateZ(-20px);
+}
+
+/* 高端数据展示 */
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  transform-style: preserve-3d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transform: translateZ(10px);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+  transform: translateZ(5px);
+}
+
+/* 平滑分割线 */
+.smooth-divider {
+  height: 150px;
+  background: linear-gradient(to bottom, 
+    var(--bg-primary) 0%, 
+    var(--bg-secondary) 100%);
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  transform-style: preserve-3d;
+}
+
+.smooth-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-color);
+  opacity: 0.5;
+}
+
+/* 鼠标悬停缩放效果 */
+.zoom-on-hover {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.zoom-on-hover:hover {
+  transform: scale(1.05);
+}
+
+/* 呼吸灯效果 */
+.breathing-glow {
+  box-shadow: 0 0 20px var(--glow-color);
+  animation: breathing 3s infinite ease-in-out;
+}
+
+@keyframes breathing {
+  0%, 100% { box-shadow: 0 0 20px var(--glow-color); }
+  50% { box-shadow: 0 0 40px var(--glow-color); }
+}
+
+/* 进度指示器 */
+.progress-bar {
+  position: relative;
+  height: 6px;
+  background-color: var(--bg-tertiary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 3px;
+  animation: progress-animation 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes progress-animation {
+  from { width: 0; }
+  to { width: var(--progress-value, 50%); }
+}
+
+/* 高级状态标签 */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-badge.active {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: rgb(16, 185, 129);
+}
+
+.status-badge.active::before {
+  background-color: rgb(16, 185, 129);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.status-badge.inactive {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: rgb(239, 68, 68);
+}
+
+.status-badge.inactive::before {
+  background-color: rgb(239, 68, 68);
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* 悬浮控制按钮 */
+.floating-controls {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 90;
+}
+
+.floating-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.floating-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}

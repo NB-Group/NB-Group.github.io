@@ -1,0 +1,269 @@
+/* 高级动画集合 */
+
+/* 闪耀效果 - 用于突出显示元素 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+/* 悬浮微动效果 */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 平滑出现效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 确保fade-up动画定义正确 */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible,
+.fade-up.appeared {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 展开闭合动画 */
+@keyframes expand {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.expand {
+  transform-origin: center;
+  animation: expand 0.5s ease-out forwards;
+}
+
+/* 3D旋转效果 */
+@keyframes flip {
+  0% {
+    transform: perspective(400px) rotateY(0);
+  }
+  100% {
+    transform: perspective(400px) rotateY(180deg);
+  }
+}
+
+.flip {
+  animation: flip 1s ease-in-out;
+  backface-visibility: hidden;
+}
+
+/* 脉冲效果 */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* 渐变边框动画 */
+@keyframes borderGradient {
+  0% {
+    border-image-source: linear-gradient(90deg, #4f46e5, #8b5cf6, #4f46e5);
+    border-image-slice: 1;
+  }
+  50% {
+    border-image-source: linear-gradient(90deg, #8b5cf6, #4f46e5, #8b5cf6);
+    border-image-slice: 1;
+  }
+  100% {
+    border-image-source: linear-gradient(90deg, #4f46e5, #8b5cf6, #4f46e5);
+    border-image-slice: 1;
+  }
+}
+
+.animated-border {
+  border: 2px solid;
+  border-image-source: linear-gradient(90deg, #4f46e5, #8b5cf6, #4f46e5);
+  border-image-slice: 1;
+  animation: borderGradient 3s infinite;
+}
+
+/* 打字机效果 */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--accent-color) }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.1em;
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret 0.75s step-end infinite;
+  border-right: 3px solid;
+}
+
+/* 鼠标悬停时的缩放效果 */
+.zoom-hover {
+  transition: transform 0.3s ease;
+}
+
+.zoom-hover:hover {
+  transform: scale(1.05);
+}
+
+/* 霓虹灯发光效果 */
+@keyframes neon {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(79, 70, 229, 0.7),
+      0 0 10px rgba(79, 70, 229, 0.5),
+      0 0 15px rgba(79, 70, 229, 0.3),
+      0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(79, 70, 229, 0.9),
+      0 0 20px rgba(79, 70, 229, 0.7),
+      0 0 30px rgba(79, 70, 229, 0.5),
+      0 0 40px rgba(139, 92, 246, 0.5);
+  }
+}
+
+.neon {
+  animation: neon 2s ease-in-out infinite alternate;
+}
+
+/* 元素滑入动画组 */
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 为同样有渐入效果的元素添加动画准备状态 */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* 动画延迟类 */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-800 { animation-delay: 800ms; }
+.delay-1000 { animation-delay: 1000ms; }

@@ -1,0 +1,553 @@
+/* 移动端响应式适配样式 */
+
+/* 通用移动端适配 */
+@media (max-width: 768px) {
+  /* 页面容器调整 */
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* 导航栏优化 */
+  .main-nav {
+    padding: 0 1.5rem;
+  }
+  
+  /* 英雄区域调整 */
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-content .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .hero-content .description {
+    font-size: 1rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .primary-button, .secondary-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* 隐藏或调整特殊元素 */
+  .floating-notes,
+  .dynamic-light,
+  .geo-2,
+  .geo-3 {
+    display: none;
+  }
+  
+  .scroll-indicator {
+    bottom: 10vh;
+  }
+  
+  /* 特性卡片适配 */
+  .feature-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  /* 经验区域 */
+  .feature-showcase {
+    gap: 2rem;
+  }
+  
+  .feature-detail, 
+  .feature-image {
+    flex: 1 1 100%;
+  }
+  
+  /* 下载区适配 */
+  .download-options {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .download-option {
+    width: auto;
+  }
+  
+  /* 网格布局调整 */
+  .highlights-grid,
+  .tech-container,
+  .contributors-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  /* 统计数字区域 */
+  .stats-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .stat-item {
+    width: 100%;
+  }
+
+  /* 页脚调整 */
+  .footer-links {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  /* 下载区域调整 */
+  .download {
+    padding: 4rem 1rem;
+  }
+
+  /* 3D标志容器调整 */
+  .logo3d-container {
+    width: 150px;
+    height: 150px;
+    margin: 1rem auto 2rem;
+  }
+
+  /* 玻璃卡片适应移动端 */
+  .glass-card.layered-card {
+    padding: 1.5rem;
+    margin: 0 1rem;
+    max-width: calc(100% - 2rem);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .glass-card h2 {
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+  }
+  
+  .glass-card p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* 下载选项改为更适合移动端的布局 */
+  .download-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .download-option {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+  
+  /* 确保图标和文字正确对齐 */
+  .os-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+  }
+  
+  .os-info h4 {
+    font-size: 1.1rem;
+  }
+  
+  .os-info span {
+    font-size: 0.8rem;
+  }
+  
+  /* 版本信息和进度条调整 */
+  .progress-bar {
+    height: 6px;
+    margin: 1.5rem 0 0.5rem;
+  }
+  
+  .download-stats {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+  
+  .version-info {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  /* 其他部分也需要优化 */
+  /* 团队信息和贡献者区域 */
+  .about {
+    padding: 4rem 1rem;
+  }
+  
+  .team-info {
+    padding: 1.5rem;
+  }
+  
+  .team-info p {
+    font-size: 0.95rem;
+  }
+  
+  .team-info .quote {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+  .credit-section {
+    margin-top: 2rem;
+  }
+  
+  .credit-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .credits {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+  
+  .credit-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* 贡献者grid调整为更紧凑的布局 */
+  .contributors-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+  
+  .contributor img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .contributor span {
+    font-size: 0.7rem;
+  }
+}
+
+/* 超小屏幕设备 */
+@media (max-width: 480px) {
+  /* 英雄区更多调整 */
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .subtitle-container {
+    flex-direction: column;
+  }
+  
+  /* 进一步压缩空间 */
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .section-title p {
+    font-size: 1rem;
+  }
+  
+  /* 网格调整为单列 */
+  .highlights-grid,
+  .tech-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-image .glass-image-wrapper {
+    transform: scale(0.9);
+  }
+  
+  /* 简化视差效果 */
+  .parallax-section {
+    height: auto;
+    padding: 3rem 1rem;
+  }
+  
+  .parallax-content h2 {
+    font-size: 1.8rem;
+  }
+  
+  .parallax-content p {
+    font-size: 1.1rem;
+  }
+  
+  /* 减小间距 */
+  .section-title {
+    margin-bottom: 2rem;
+  }
+  
+  .features,
+  .experience,
+  .download,
+  .about {
+    padding: 4rem 1rem;
+  }
+
+  /* 下载区域进一步优化 */
+  .logo3d-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .logo3d-layer .logo-text {
+    font-size: 2rem;
+  }
+  
+  .glass-card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .glass-card p {
+    font-size: 0.9rem;
+  }
+  
+  /* 贡献者网格改为2列 */
+  .contributors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* 统计数据调整 */
+  .stat-number {
+    font-size: 2.2rem;
+  }
+  
+  /* 特性展示适配 */
+  .feature-showcase {
+    gap: 1.5rem;
+  }
+  
+  .feature-detail h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .feature-list li {
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    padding-left: 1.2rem;
+  }
+  
+  /* 增加视频与图片替换元素的移动端适配 */
+  .video-container {
+    width: 100%;
+    margin: 1rem 0;
+  }
+  
+  .play-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* 横屏模式特殊处理 */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .hero-image-container {
+    display: none;
+  }
+  
+  .scroll-indicator {
+    display: none;
+  }
+  
+  .hero-content {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  /* 下载区域横屏特别优化 */
+  .download {
+    padding: 2rem 1rem;
+  }
+  
+  .logo3d-container {
+    display: none; /* 在横屏模式下隐藏3D标志以节省空间 */
+  }
+  
+  .download-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .download-option {
+    padding: 0.8rem;
+  }
+  
+  .os-icon {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .os-info h4 {
+    font-size: 0.9rem;
+  }
+  
+  .os-info span {
+    font-size: 0.7rem;
+  }
+  
+  /* 其他内容区减小高度 */
+  .glass-card.layered-card {
+    padding: 1rem;
+  }
+  
+  .glass-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .glass-card p {
+    margin-bottom: 1rem;
+  }
+}
+
+/* 平板设备适配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+  
+  .feature-cards {
+    gap: 1.5rem;
+  }
+  
+  .feature-card {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+  
+  /* 减少些内边距 */
+  .features, .experience, .download, .about {
+    padding: 6rem 2rem;
+  }
+  
+  /* 调整水平间距 */
+  .feature-showcase {
+    gap: 2.5rem;
+  }
+}
+
+/* 减少动效，优化性能 */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  /* 禁用一些高级动画和3D效果 */
+  .material-glass::before,
+  .material-glass::after,
+  .glass-layer,
+  .floating-element,
+  .parallax-element {
+    display: none !important;
+  }
+  
+  .tilt-effect {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* 简化所有悬停效果 */
+  .hover-card:hover,
+  .feature-card:hover,
+  .interactive:hover {
+    transform: translateY(-5px) !important;
+    transition: transform 0.3s !important;
+  }
+  
+  /* 禁用所有背景动画 */
+  [class*="animation-"],
+  .shimmer,
+  .wave-texture,
+  .dynamic-glow {
+    animation: none !important;
+  }
+  
+  /* 加载时直接显示内容 */
+  .fade-in,
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+  }
+  
+  /* 对于有大型背景的区块使用更轻量级的背景 */
+  .parallax-bg {
+    background-attachment: scroll !important;
+    transform: none !important;
+  }
+}
+
+/* 触摸屏优化 */
+@media (hover: none) {
+  /* 增大点击区域 */
+  .nav-links a,
+  .footer-links a,
+  .download-option,
+  button {
+    padding: 0.8rem 1.2rem;
+  }
+  
+  /* 移除所有悬停状态效果，直接显示 */
+  .feature-card .feature-icon::before {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  /* 调整导航菜单间距，防止误触 */
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  /* 下载按钮触摸优化 */
+  .download-option {
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .download-option:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+  
+  /* 禁用下载区域中可能影响性能的效果 */
+  .logo3d {
+    transform: rotateX(5deg) rotateY(10deg) !important;
+    transition: none !important;
+  }
+  
+  .logo3d-layer {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* 体验更好的移动端进度条 */
+  .progress-bar {
+    height: 8px; /* 更粗的进度条更容易看到 */
+  }
+}
+
+/* 平板设备横屏模式的下载区域 */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .download-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* 特殊设备适配 */
+@media screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+  /* iPhone 13 Pro特别优化 */
+  .download {
+    padding-bottom: 5rem; /* 增加底部内边距避免被手势区域遮挡 */
+  }
+}
