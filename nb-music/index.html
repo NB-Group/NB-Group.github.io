@@ -193,7 +193,7 @@
 
             <div class="feature-card ultra-card reveal" data-animate="fade-up" data-delay="0.4">
                 <div class="feature-icon">🎤</div>
-                <h3>智能歌词捕捉系统</h>
+                <h3>智能歌词捕捉系统</h3>
                     <p>自动匹配与手动补全的双重保障，让每一首歌都有歌词相伴</p>
             </div>
         </div>
@@ -327,7 +327,7 @@
         </div>
     </section>
 
-    <!-- 修复下载区域，添加清晰的下载按钮 -->
+    <!-- 下载区域 - 添加自动获取GitHub最新版本功能 -->
     <section id="download" class="download gradient-bg">
         <div class="texture wave-texture"></div>
 
@@ -352,21 +352,18 @@
             <p>最新版本已发布，支持 Windows、macOS 和 Linux</p>
 
             <div class="download-options">
-                <a href="https://github.com/NB-Group/NB_Music/releases/latest/download/NB-Music-Setup.exe"
-                    class="download-option windows neon-effect">
+                <a href="#" class="download-option windows neon-effect" data-os="windows">
                     <div class="os-icon">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
+                            <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
                         </svg>
                     </div>
                     <div class="os-info">
                         <h4>Windows</h4>
-                        <span>v2.1.0</span>
+                        <span class="version-label">加载中...</span>
                     </div>
                 </a>
-                <a href="https://github.com/NB-Group/NB_Music/releases/latest/download/NB-Music.dmg"
-                    class="download-option mac neon-effect">
+                <a href="#" class="download-option mac neon-effect" data-os="mac">
                     <div class="os-icon">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path
@@ -375,11 +372,10 @@
                     </div>
                     <div class="os-info">
                         <h4>macOS</h4>
-                        <span>v2.1.0</span>
+                        <span class="version-label">加载中...</span>
                     </div>
                 </a>
-                <a href="https://github.com/NB-Group/NB_Music/releases/latest/download/NB-Music-Linux.AppImage"
-                    class="download-option linux neon-effect">
+                <a href="#" class="download-option linux neon-effect" data-os="linux">
                     <div class="os-icon">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path
@@ -388,17 +384,13 @@
                     </div>
                     <div class="os-info">
                         <h4>Linux</h4>
-                        <span>v2.1.0</span>
+                        <span class="version-label">加载中...</span>
                     </div>
                 </a>
             </div>
-
-
             <div class="progress-bar" style="margin-top: 30px;">
                 <div class="progress-bar-fill" style="--progress-value: 85%"></div>
             </div>
-            <div class="download-stats">已完成85%的功能，持续迭代中...</div>
-
             <div class="version-info breathing-glow">
                 <span>自动更新 | 开源免费</span>
             </div>
@@ -419,22 +411,19 @@
             <p class="quote">作业没写完也要写代码的传说！（其实我们成绩都很好的啦）</p>
         </div>
 
-        <div class="credit-section reveal">
-            <h3>感谢以下开源项目</h3>
-            <div class="credits">
-                <a href="https://gitlab.com/Binaryify/neteasecloudmusicapi"
-                    class="credit-badge">neteasecloudmusicapi</a>
-                <a href="https://github.com/SocialSisterYi/bilibili-API-collect" class="credit-badge">BillBill Api
-                    Collect</a>
-            </div>
+        <h3 style="    display: flex;justify-content: center;">感谢以下开源项目</h3>
+        <div class="credits">
+            <a href="https://gitlab.com/Binaryify/neteasecloudmusicapi" class="credit-badge">neteasecloudmusicapi</a>
+            <a href="https://github.com/SocialSisterYi/bilibili-API-collect" class="credit-badge">BillBill Api
+                Collect</a>
         </div>
 
         <!-- 添加贡献者荣誉墙 -->
-        <div class="contributors-section" data-animate="fade-up"></div>
-        <h3 style="text-align: center;">贡献者荣誉墙</h3>
-        <div class="contributors-grid">
-            <!-- 贡献者头像将通过JS动态加载 -->
-        </div>
+        <div class="contributors-section" data-animate="fade-up">
+            <h3 style="text-align: center;">贡献者荣誉墙</h3>
+            <div class="contributors-grid">
+                <!-- 贡献者头像将通过JS动态加载 -->
+            </div>
         </div>
     </section>
 
@@ -451,20 +440,19 @@
                 © 2023 NB-Group. 基于 <a href="https://github.com/NB-Group/NB_Music/blob/main/LICENSE">GPL-3.0 许可证</a> 开源。
             </div>
         </div>
-
     </footer>
 
     <script src="scripts/main.js"></script>
     <script src="scripts/effects.js"></script>
     <script src="scripts/advanced-effects.js"></script>
     <script src="scripts/mobile-adapter.js"></script>
+    <script src="scripts/download-manager.js"></script>
     <script>
-        // 数字计数动画
         document.addEventListener('DOMContentLoaded', function () {
             // 延迟执行，确保页面加载完成
             setTimeout(function () {
+                // 数字计数动画
                 const statNumbers = document.querySelectorAll('.stat-number[data-count]');
-
                 statNumbers.forEach(stat => {
                     const targetCount = parseInt(stat.getAttribute('data-count'), 10);
                     const duration = 2000; // 动画持续时间，2秒
@@ -480,27 +468,25 @@
                                 // 使用缓动函数使动画更自然
                                 const progress = ease(frame / totalFrames);
                                 const currentCount = Math.round(progress * targetCount);
-
                                 // 格式化大数字，添加千位分隔符
                                 stat.textContent = currentCount.toLocaleString();
 
                                 if (frame === totalFrames) {
                                     clearInterval(counter);
+                                    observer.disconnect(); // 停止观察
                                 }
                             }, frameDuration);
-
-                            observer.disconnect(); // 停止观察
                         }
                     }, { threshold: 0.5 });
 
                     observer.observe(stat);
                 });
-            }, 500);
 
-            // 缓动函数，使数字增长更加自然
-            function ease(t) {
-                return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-            }
+                // 缓动函数，使数字增长更加自然
+                function ease(t) {
+                    return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                }
+            }, 500);
 
             // 加载GitHub贡献者
             fetch('https://api.github.com/repos/NB-Group/NB_Music/contributors?per_page=8')

@@ -1,0 +1,74 @@
+/**
+ * NB-Music 下载区域样式
+ * 用于美化下载按钮和显示推荐操作系统
+ */
+
+/* 下载按钮活跃状态 */
+.download-option.active {
+    transform: translateY(-2px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 推荐操作系统显示 */
+.download-option.recommended {
+    border: 2px solid var(--accent-color, #7c4dff);
+    box-shadow: 0 0 15px rgba(124, 77, 255, 0.4);
+    transform: translateY(-5px) scale(1.03);
+    z-index: 2;
+    position: relative;
+}
+
+/* 推荐徽章 */
+.recommended-badge {
+    position: absolute;
+    right: -10px;
+    background: var(--accent-color, #7c4dff);
+    color: white;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    animation: pulse 2s infinite;
+}
+
+/* 脉冲动画 */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 版本标签样式 */
+.version-label {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--text-secondary);
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.1);
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .download-options {
+        flex-direction: column;
+    }
+    
+    .download-option {
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    .download-option.recommended {
+        order: -1; /* 推荐选项排在最前面 */
+    }
+}
