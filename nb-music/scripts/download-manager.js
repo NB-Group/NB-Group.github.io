@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const REPO_OWNER = 'NB-Group';
     const REPO_NAME = 'NB_Music';
     const GITHUB_API = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`;
-    const PROXY_URL = 'https://github.proxy.class3.fun/';
+    const PROXY_URL = 'https://ghf.xn--eqrr82bzpe.top/';
 
     // 文件匹配规则
     const FILE_PATTERNS = {
