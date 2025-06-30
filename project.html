@@ -1,120 +1,486 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
   <meta charset="UTF-8" />
-  <title>NB-group Projects</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NB-Group 项目展示</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* 粒子背景 */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* 头部标题 */
+    .header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      color: white;
+    }
+
+    .header h1 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      margin-bottom: 10px;
+      background: linear-gradient(45deg, #fff, #f0f0f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+      to {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-top: 15px;
+    }
+
+    /* 项目容器 */
+    .projects-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    /* 项目卡片 */
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px 30px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .project-card:hover::before {
+      left: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .project-icon {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .project-card h2 {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .project-card .subtitle {
+      color: #f0f0f0;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .project-card p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0;
+    }
+
+    .tech-tag {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .project-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .project-card {
+        padding: 30px 20px;
+      }
+      
+      .project-buttons {
+        flex-direction: column;
+      }
+    }
+
+    /* 滚动动画 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
 <body>
-  <div class="carousel-container">
-    <div class="carousel">
-      <div class="card">
-        <div class="content">
-          <h1>MOSS Ultra</h1>
-          <p>The embryonic form of general artificial intelligence!</p>
-          <p>
-            Artificial intelligence with real-time response, self reflection,
-            and full access to computers
-          </p>
-          <br />
-          <p>通用人工智能的雏形！</p>
-          <p>拥有实时回复，自我反思，和对计算机完全访问权限的人工智能。</p>
-          <br />
-          <button class="github" onclick="window.open('https://github.com/NB-Group/MOSS_Ultra', '_blank');">
-            In Github
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h1>Windows 12 Online</h1>
-          <p>Refined web-based operating system!</p>
-          <p>
-            Exquisite UI design, smooth and rich animations, and various
-            advanced features (compared to web pages).
-          </p>
-          <br />
-          <p>精致的网页版操作系统！</p>
-          <p>
-            精致的UI设计，流畅丰富的动画，以及各种高级功能（与网页相比）。
-          </p>
-          <br />
-          <button class="github" onclick="window.open('https://github.com/NB-Group/MOSS_Ultra', '_blank');">
-            In Github
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h1 style="display: inline">Intelligent Classroom System</h1>
-          <h2>- 鲲鹏之眼</h2>
-          <p>Student classroom behavior detection project !</p>
-          <p>
-            utilizes artificial intelligence computer vision technology to
-            detect student behavior in the classroom.
-          </p>
-          <br />
-          <p>学生课堂行为检测！</p>
-          <p>利用人工智能技术识别并记录学生课堂行为</p>
-          <br />
-          <button class="github"
-            onclick="window.open('https://github.com/NB-Group/Intelligent-Classroom-System', '_blank');">
-            In Github
-          </button>
-        </div>
-      </div>
-      <div class="card">
-        <div class="content">
-          <h1>NB softwares</h1>
-          <p style="color: red">
-            Attention: The code from my childhood, very messy, with no English
-            localization
-          </p>
-          <p>Convenient tools ！</p>
-          <p>Super many practical tools on Python</p>
-          <br />
-          <p style="color: red">注意：这是我幼年时期的代码，非常乱。</p>
-          <p>实用工具！</p>
-          <p>超级多Python编写的小工具</p>
-          <br />
-          <button class="github"
-            onclick="window.open('https://github.com/NB-Group/Intelligent-Classroom-System', '_blank');">
-            In Github
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- 左右箭头 -->
-    <button class="carousel-control prev" onclick="moveSlide(-1)">
-      &#10094;
-    </button>
-    <button class="carousel-control next" onclick="moveSlide(1)">
-      &#10095;
-    </button>
+  <!-- 粒子背景 -->
+  <div class="particles" id="particles"></div>
 
-    <!-- 短线指示器 -->
-    <div class="carousel-indicators">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
+  <!-- 头部 -->
+  <div class="header">
+    <h1>🚀 NB-Group 项目展示</h1>
+    <p>梁皓文的编程世界 | 用代码改变未来</p>
+  </div>
+
+  <!-- 项目展示 -->
+  <div class="projects-container">
+    <div class="projects-grid">
+      
+      <!-- MOSS Ultra -->
+      <div class="project-card fade-in">
+        <div class="project-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h2>MOSS Ultra</h2>
+        <div class="subtitle">通用人工智能雏形</div>
+        <p>具有实时响应、自我反思能力的人工智能系统，拥有对计算机的完全访问权限。这是通用人工智能的早期探索项目。</p>
+        <p>🌟 The embryonic form of general artificial intelligence with real-time response and self-reflection capabilities.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">AI</span>
+          <span class="tech-tag">机器学习</span>
+          <span class="tech-tag">自然语言处理</span>
+        </div>
+        <div class="project-buttons">
+          <a href="https://github.com/NB-Group/MOSS_Ultra" target="_blank" class="btn btn-primary">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="#" class="btn btn-secondary">
+            <i class="fas fa-play"></i> 演示
+          </a>
+        </div>
+      </div>
+
+      <!-- Windows 12 Online -->
+      <div class="project-card fade-in">
+        <div class="project-icon">
+          <i class="fab fa-windows"></i>
+        </div>
+        <h2>Windows 12 Online</h2>
+        <div class="subtitle">精致的网页操作系统</div>
+        <p>基于Web技术构建的模拟操作系统，拥有精美的UI设计、流畅的动画效果和丰富的功能模块。</p>
+        <p>🎨 Refined web-based operating system with exquisite UI design and smooth animations.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">HTML5</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Web API</span>
+        </div>
+        <div class="project-buttons">
+          <a href="https://github.com/tjy-gitnub/win12" target="_blank" class="btn btn-primary">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="#" class="btn btn-secondary">
+            <i class="fas fa-external-link-alt"></i> 体验
+          </a>
+        </div>
+      </div>
+
+      <!-- 智慧课堂系统 -->
+      <div class="project-card fade-in">
+        <div class="project-icon">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h2>鲲鹏之眼</h2>
+        <div class="subtitle">智慧课堂行为检测系统</div>
+        <p>基于计算机视觉技术的学生课堂行为智能检测系统，利用AI技术实时分析和记录课堂动态。</p>
+        <p>👁️ AI-powered classroom behavior detection system utilizing computer vision technology.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">OpenCV</span>
+          <span class="tech-tag">深度学习</span>
+          <span class="tech-tag">计算机视觉</span>
+        </div>
+        <div class="project-buttons">
+          <a href="https://github.com/NB-Group/Intelligent-Classroom-System" target="_blank" class="btn btn-primary">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="#" class="btn btn-secondary">
+            <i class="fas fa-info-circle"></i> 详情
+          </a>
+        </div>
+      </div>
+
+      <!-- NB Music -->
+      <div class="project-card fade-in">
+        <div class="project-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <h2>NB Music</h2>
+        <div class="subtitle">近乎完美的音乐播放器</div>
+        <p>功能丰富的Web音乐播放器，支持多种音频格式，拥有现代化的界面设计和流畅的用户体验。</p>
+        <p>🎵 A nearly perfect music player with modern UI and rich features.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">JavaScript</span>
+          <span class="tech-tag">Web Audio API</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">响应式设计</span>
+        </div>
+        <div class="project-buttons">
+          <a href="https://github.com/NB-Group/NB_Music" target="_blank" class="btn btn-primary">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="./NB-Music/index.html" class="btn btn-secondary">
+            <i class="fas fa-play"></i> 播放
+          </a>
+        </div>
+      </div>
+
+      <!-- NB Software -->
+      <div class="project-card fade-in">
+        <div class="project-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h2>NB Software</h2>
+        <div class="subtitle">实用工具集合</div>
+        <p>Python编写的实用工具集合，包含多种日常开发和使用所需的小工具。这是早期的编程练习项目。</p>
+        <p>🛠️ Collection of practical Python utilities and tools for daily development.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">工具开发</span>
+          <span class="tech-tag">自动化</span>
+          <span class="tech-tag">早期作品</span>
+        </div>
+        <div class="project-buttons">
+          <a href="https://github.com/NB-Group/NB-software" target="_blank" class="btn btn-primary">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="#" class="btn btn-secondary">
+            <i class="fas fa-download"></i> 下载
+          </a>
+        </div>
+      </div>
+
+      <!-- 更多项目提示 -->
+      <div class="project-card fade-in" style="border: 2px dashed rgba(255,255,255,0.3); text-align: center;">
+        <div class="project-icon">
+          <i class="fas fa-plus-circle"></i>
+        </div>
+        <h2>更多精彩项目</h2>
+        <div class="subtitle">持续创新中...</div>
+        <p>更多有趣的项目正在开发中，敬请期待！</p>
+        <p>🔥 More exciting projects are coming soon!</p>
+        <div class="project-buttons" style="justify-content: center;">
+          <a href="https://github.com/NB-Group" target="_blank" class="btn btn-primary">
+            <i class="fab fa-github"></i> 查看更多
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="gradient-bg">
-    <div class="gradients-container">
-      <div class="g1"></div>
-      <div class="g2"></div>
-      <div class="g3"></div>
-      <div class="g4"></div>
-      <div class="g5"></div>
-      <div class="interactive"></div>
-    </div>
-  </div>
+  <script>
+    // 创建粒子背景
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
 
-  <script src="./script.js"></script>
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // 滚动动画
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.fade-in');
+      const windowHeight = window.innerHeight;
+
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          element.classList.add('visible');
+        }
+      });
+    }
+
+    // 卡片交互效果
+    function addCardInteractions() {
+      const cards = document.querySelectorAll('.project-card');
+      
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+    }
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      animateOnScroll();
+      addCardInteractions();
+      
+      // 初始显示第一个卡片
+      setTimeout(() => {
+        document.querySelector('.fade-in').classList.add('visible');
+      }, 300);
+    });
+
+    // 滚动监听
+    window.addEventListener('scroll', animateOnScroll);
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
