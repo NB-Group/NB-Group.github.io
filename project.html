@@ -1,568 +1,437 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>硫化物 - 项目展示</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>硫化物 - Projects</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* 统一设计风格 */
-    body {
-      font-family: Comic Sans MS, Helvetica Neue, Microsoft Yahei, -apple-system, sans-serif;
-      background: radial-gradient(#313131, #0a0a0a);
-      color: #93979e;
-      min-height: 100vh;
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --accent-blue: #00f2ff;
+      --accent-purple: #bd00ff;
+      --text-main: #ffffff;
+      --text-muted: #a0a0a0;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    /* 主容器 */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+
+    /* Main Project List */
     .main-container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 40px 20px 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 100px 5%;
+      position: relative;
+      background: #0a0a0a;
     }
 
-    /* 标题 */
-    .page-title {
-      text-align: center;
+    .section-header {
       margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
       color: white;
-      font-size: 3.5rem;
-      font-weight: 300;
-      background: linear-gradient(45deg, #fff, #f0f0f0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: titleGlow 2s ease-in-out infinite alternate;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    @keyframes titleGlow {
-      from {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-      }
-      to {
-        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-      }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      opacity: 0.7;
     }
 
-    .page-subtitle {
-      text-align: center;
-      color: #b6b6b6;
-      font-size: 1.2rem;
-      margin-top: 15px;
-      opacity: 0.9;
-    }
-
-    /* 项目网格 */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
       gap: 30px;
-      margin-bottom: 60px;
-      max-width: 1000px;
-      width: 100%;
     }
 
-    /* 项目卡片 */
     .project-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 40px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      max-width: 500px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 0; /* Brutalist/Tech feel */
+      padding: 30px;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-blue), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
     }
 
     .project-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateY(-10px);
-      border-color: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+      background: #161616;
+      border-color: #333;
     }
 
-    .project-icon {
-      font-size: 3rem;
-      color: #ff963b;
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      color: var(--accent-blue);
       margin-bottom: 20px;
-      text-align: center;
-      display: block;
-    }
-
-    .project-card h2 {
-      color: white;
-      font-size: 1.8rem;
-      margin-bottom: 15px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .project-card .subtitle {
-      color: #b6b6b6;
-      font-size: 1rem;
-      margin-bottom: 20px;
-      text-align: center;
       opacity: 0.8;
     }
 
-    .project-card p {
-      color: #93979e;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      font-size: 0.95rem;
+    .card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      color: white;
+      margin-bottom: 5px;
     }
 
-    .tech-tags {
+    .card-subtitle {
+      color: #666;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    .card-desc {
+      color: #999;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0;
-      justify-content: center;
+      gap: 8px;
+      margin-bottom: 25px;
     }
 
-    .tech-tag {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
+    .tech-pill {
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.05);
+      color: #ccc;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
     }
 
-    .tech-tag:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .project-buttons {
+    .card-actions {
       display: flex;
       gap: 15px;
-      margin-top: 25px;
-      justify-content: center;
+      margin-top: auto;
     }
 
-    .btn {
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
-      font-weight: 600;
+    .action-link {
+      color: white;
       text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .action-link:hover {
+      opacity: 1;
+      color: var(--accent-blue);
+    }
+
+    /* CTA button (used by the "More on GitHub" card) */
+    .btn-hero {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      color: white;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.8rem;
       transition: all 0.3s ease;
-      font-size: 0.9rem;
-      text-align: center;
     }
 
-    .btn-primary {
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      color: white;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-    }
-
-    .btn-primary:hover {
+    .btn-hero:hover {
+      background: var(--accent-blue);
+      border-color: var(--accent-blue);
+      color: black;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
     }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
     }
-
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-      .main-container {
-        padding: 40px 20px 60px;
-      }
-
-      .page-title {
-        font-size: 2.5rem;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 100%;
-      }
-
-      .project-card {
-        padding: 30px 20px;
-        max-width: 100%;
-      }
-
-      .project-buttons {
-        flex-direction: column;
-      }
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
     }
-
-    /* 动画 */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
     }
   </style>
 </head>
-
 <body>
-  <div class="main-container">
-    <!-- 页面标题 -->
-    <h1 class="page-title fade-in">🚀 硫化物 - 项目展示</h1>
-    <p class="page-subtitle">Code & Input & Output</p>
 
-    <!-- 项目网格 -->
+  <!-- Project Grid -->
+  <div class="main-container" id="project-list">
+    <div class="section-header">
+      <h2 class="section-title">
+        <i class="fas fa-database" style="font-size: 0.6em; color: var(--accent-blue);"></i>
+        PROJECT ARCHIVE / 项目档案
+      </h2>
+      <div class="section-subtitle">A collection of experiments, tools, and systems. / 作品与实验合集</div>
+    </div>
+
     <div class="projects-grid">
-
-      <!-- MOSS Ultra -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-robot"></i>
+      <!-- FieldFlow -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-bolt"></i></div>
+        <h3 class="card-title">FieldFlow</h3>
+        <div class="card-subtitle">Circuit Lab / 电学实验台</div>
+        <p class="card-desc">Build DC circuits on graph paper and watch them run. Current particles flow along the wires, wires are colored by potential, and every component shows its live voltage, current, resistance and power.<br><span style="color:#777;">在方格纸上搭直流电路：电流粒子沿导线移动，导线按电势着色，元件读数实时更新。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">Canvas</span>
+          <span class="tech-pill">Circuit Simulation</span>
         </div>
-        <h2>MOSS Ultra</h2>
-        <div class="subtitle">通用人工智能雏形</div>
-        <p>具有实时响应、自我反思能力的人工智能系统，拥有对计算机的完全访问权限。这是通用人工智能的早期探索项目。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">AI</span>
-          <span class="tech-tag">机器学习</span>
-          <span class="tech-tag">自然语言处理</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/MOSS_Ultra" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-play"></i> 演示
-          </a>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/FieldFlow" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
         </div>
       </div>
 
-      <!-- Windows 12 Online -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fab fa-windows"></i>
+      <!-- Nonlinear animation -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-wave-square"></i></div>
+        <h3 class="card-title">Nonlinear Animation</h3>
+        <div class="card-subtitle">GNOME Extension / 动画曲线</div>
+        <p class="card-desc">Puts acceleration and deceleration back into GNOME Shell. Hooks Clutter's ease prototypes, so overview, workspace and window motion all pick up the curve you choose, with interruption momentum and a spline/spring editor.<br><span style="color:#777;">给 GNOME Shell 找回加速与减速曲线，支持打断动量的惯性衔接和自定义贝塞尔、弹簧编辑器。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">GJS</span>
+          <span class="tech-pill">Clutter</span>
         </div>
-        <h2>Windows 12 Online</h2>
-        <div class="subtitle">精致的网页操作系统</div>
-        <p>基于Web技术构建的模拟操作系统，拥有精美的UI设计、流畅的动画效果和丰富的功能模块。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">HTML5</span>
-          <span class="tech-tag">CSS3</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Web API</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/tjy-gitnub/win12" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-external-link-alt"></i> 体验
-          </a>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/Nonlinear-animation-is-all-you-need" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
         </div>
       </div>
 
-      <!-- 智慧课堂系统 -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-eye"></i>
+      <!-- GuluGulu -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-puzzle-piece"></i></div>
+        <h3 class="card-title">GuluGulu</h3>
+        <div class="card-subtitle">Browser Extension / 洛谷增强</div>
+        <p class="card-desc">A browser extension that reworks the Luogu interface: a cleaner problem page, an in-page IDE with self-test runs, contest views and an AI assistant. Inspired by BewlyBewly.<br><span style="color:#777;">重构洛谷界面的浏览器扩展：题目页、内置 IDE 自测、比赛视图与 AI 助手，灵感来自 BewlyBewly。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">Vue 3</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Manifest V3</span>
         </div>
-        <h2>鲲鹏之眼</h2>
-        <div class="subtitle">智慧课堂行为检测系统</div>
-        <p>基于计算机视觉技术的学生课堂行为智能检测系统，利用AI技术实时分析和记录课堂动态。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">OpenCV</span>
-          <span class="tech-tag">深度学习</span>
-          <span class="tech-tag">计算机视觉</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/Intelligent-Classroom-System" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-info-circle"></i> 详情
-          </a>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/GuluGulu" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
         </div>
       </div>
 
-      <!-- BTC Trading -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fab fa-bitcoin"></i>
+      <!-- Auto Call System -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
+        <h3 class="card-title">Auto Call System</h3>
+        <div class="card-subtitle">Campus Queue / 校园叫号系统</div>
+        <p class="card-desc">Zero-config LAN calling system for schools. Teachers type pinyin initials to pick a student, the classroom display shows the name in large type and speaks it twice.<br><span style="color:#777;">局域网零配置的校园叫号系统：老师敲拼音首字母选人，教室大屏大字显示并语音播报两遍。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">aiohttp</span>
+          <span class="tech-pill">SQLite</span>
+          <span class="tech-pill">TTS</span>
         </div>
-        <h2>BTC Trading</h2>
-        <div class="subtitle">比特币期货智能交易系统</div>
-        <p>基于机器学习和人工智能的比特币期货智能交易系统，集成了量化模型、视觉语言模型(VLM)分析和社交媒体情报分析。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">机器学习</span>
-          <span class="tech-tag">量化交易</span>
-          <span class="tech-tag">数据分析</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/BTC_Trading" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-info-circle"></i> 详情
-          </a>
-        </div>
-      </div>
-
-      <!-- NB Music -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-music"></i>
-        </div>
-        <h2>NB Music</h2>
-        <div class="subtitle">近乎完美的音乐播放器</div>
-        <p>功能丰富的Web音乐播放器，支持多种音频格式，拥有现代化的界面设计和流畅的用户体验。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Web Audio API</span>
-          <span class="tech-tag">CSS3</span>
-          <span class="tech-tag">响应式设计</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/NB_Music" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="./NB-Music/index.html" class="btn btn-secondary">
-            <i class="fas fa-play"></i> 播放
-          </a>
-        </div>
-      </div>
-
-      <!-- NB Software -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-tools"></i>
-        </div>
-        <h2>NB Software</h2>
-        <div class="subtitle">实用工具集合</div>
-        <p>Python编写的实用工具集合，包含多种日常开发和使用所需的小工具。这是早期的编程练习项目。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">工具开发</span>
-          <span class="tech-tag">自动化</span>
-          <span class="tech-tag">实用工具</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/NB-software" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-download"></i> 下载
-          </a>
-        </div>
-      </div>
-
-      <!-- Auto Card Drawing -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-palette"></i>
-        </div>
-        <h2>Auto Card Drawing</h2>
-        <div class="subtitle">批量卡牌生成工具</div>
-        <p>使用OpenAI's先进图像生成技术批量创建风格一致的卡牌！</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">OpenAI API</span>
-          <span class="tech-tag">图像生成</span>
-          <span class="tech-tag">自动化</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/Auto_Card_Drowing" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-info-circle"></i> 详情
-          </a>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/Auto_Call_System" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
         </div>
       </div>
 
       <!-- English Review -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-language"></i>
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-spell-check"></i></div>
+        <h3 class="card-title">English Review</h3>
+        <div class="card-subtitle">Study Tool / 英语复习助手</div>
+        <p class="card-desc">Vocabulary drilling with two modes: Chinese-to-English phrases and word-form transformation. AI grades semantic matches, mistakes go to a review book, and progress resumes exactly where you left off.<br><span style="color:#777;">中英词组与词形转换两种模式，AI 语义判题、错题本、进度实时恢复与多账号存档。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">LLM Grading</span>
         </div>
-        <h2>English Review</h2>
-        <div class="subtitle">英语复习工具</div>
-        <p>专为期末考试准备设计的英语复习工具，高效的短语听写功能。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Web Audio</span>
-          <span class="tech-tag">学习工具</span>
-          <span class="tech-tag">英语学习</span>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/English-review" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
         </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/English-review" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-graduation-cap"></i> 学习
+      </div>
+
+      <!-- BTC Trading -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fab fa-bitcoin"></i></div>
+        <h3 class="card-title">BTC Trading</h3>
+        <div class="card-subtitle">Quant System / 量化交易</div>
+        <p class="card-desc">AI-powered trading system integrating quantitative models, VLM chart analysis, and social intelligence.<br><span style="color:#777;">融合量化模型、视觉语言模型看图分析与社交情报的 AI 量化交易系统。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">VLM</span>
+          <span class="tech-pill">OKX API</span>
+          <span class="tech-pill">Quant</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/BTC_Trading" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
+        </div>
+      </div>
+
+      <!-- NB Music -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-music"></i></div>
+        <h3 class="card-title">NB Music</h3>
+        <div class="card-subtitle">Web Player / 音乐播放器</div>
+        <p class="card-desc">Feature-rich web music player with modern UI and seamless user experience.<br><span style="color:#777;">现代化界面的全功能网页音乐播放器，体验流畅。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">JS</span>
+          <span class="tech-pill">Web Audio API</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/NB_Music" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
+          <a href="./nb-music/index.html" class="action-link"><i class="fas fa-play"></i> Play</a>
+        </div>
+      </div>
+
+      <!-- Inspection Early Warning System -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+        <h3 class="card-title">Early Warning System</h3>
+        <div class="card-subtitle">Face Recognition / 人脸识别预警</div>
+        <p class="card-desc">Real-time camera monitoring that recognises configured faces with DeepFace and raises a full-screen alert showing the matched photo, name and confidence.<br><span style="color:#777;">基于 DeepFace 的实时人脸识别预警：命中即全屏警报，显示照片、姓名与匹配度。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">OpenCV</span>
+          <span class="tech-pill">DeepFace</span>
+          <span class="tech-pill">pywebview</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/Inspection_Early_Warning_System" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
+        </div>
+      </div>
+
+      <!-- Auto Homework Sender -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-paper-plane"></i></div>
+        <h3 class="card-title">Auto Homework Sender</h3>
+        <div class="card-subtitle">Desktop Tool / 作业自动发送</div>
+        <p class="card-desc">Parses the last slide of a PowerPoint and posts it to a DingTalk group on a daily or weekly schedule, with duplicate-send protection and a tray-resident background service.<br><span style="color:#777;">解析 PPT 最后一页作为作业内容，按每日或每周定时推送到钉钉群，支持去重与后台常驻。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">Python</span>
+          <span class="tech-pill">python-pptx</span>
+          <span class="tech-pill">DingTalk API</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/Auto_Homework_sender" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
+        </div>
+      </div>
+
+      <!-- OI-Wiki Copilot -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-book-open"></i></div>
+        <h3 class="card-title">OI-Wiki Copilot</h3>
+        <div class="card-subtitle">Browser Extension / 算法学习助理</div>
+        <p class="card-desc">Turns OI-Wiki into a study environment: annotate any term with your own notes, ask an AI about a selected passage, rewrite confusing paragraphs, and search OI-Wiki from any page.<br><span style="color:#777;">把 OI-Wiki 变成学习环境：自定义注释、选中段落问 AI、一键润色、任意页面右键搜索。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">Chrome Extension</span>
+          <span class="tech-pill">LLM</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/OI-Wiki-Copilot" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
+        </div>
+      </div>
+
+      <!-- Time-Line -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fas fa-clock-rotate-left"></i></div>
+        <h3 class="card-title">Time-Line</h3>
+        <div class="card-subtitle">Photo Archive / 上海影像时间线</div>
+        <p class="card-desc">Browse historical photographs of Shanghai along a timeline. One of the early projects, kept for the record.<br><span style="color:#777;">沿时间线浏览上海的历史影像，早期作品，留作纪念。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">JavaScript</span>
+          <span class="tech-pill">HTML/CSS</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://github.com/NB-Group/Time-Line" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
+        </div>
+      </div>
+
+      <!-- Windows 12 Online -->
+      <div class="project-card">
+        <div class="card-icon"><i class="fab fa-windows"></i></div>
+        <h3 class="card-title">Windows 12 Online</h3>
+        <div class="card-subtitle">Web OS / 网页操作系统 · Core Maintainer</div>
+        <p class="card-desc">A sophisticated web-based operating system simulation with fluid animations and rich functional modules. Collaborator and core maintainer.<br><span style="color:#777;">具有流体动画和丰富模块的网页操作系统模拟，本人为合作者与核心维护者。</span></p>
+        <div class="tech-stack">
+          <span class="tech-pill">HTML5</span>
+          <span class="tech-pill">CSS3</span>
+          <span class="tech-pill">JavaScript</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://github.com/tjy-gitnub/win12" target="_blank" class="action-link"><i class="fab fa-github"></i> Source</a>
+        </div>
+      </div>
+
+      <!-- More Projects -->
+      <div class="project-card" style="justify-content: center; align-items: center; text-align: center;">
+        <div class="card-icon" style="font-size: 3rem; margin-bottom: 10px;"><i class="fas fa-arrow-right"></i></div>
+        <h3 class="card-title">More on GitHub / 更多项目</h3>
+        <div class="card-actions" style="margin-top: 20px;">
+          <a href="https://github.com/NB-Group" target="_blank" class="btn-hero" style="font-size: 0.8rem; padding: 10px 20px;">
+            Visit Profile
           </a>
         </div>
       </div>
 
-      <!-- Time Line -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-clock"></i>
-        </div>
-        <h2>Time Line</h2>
-        <div class="subtitle">上海历史时间线</div>
-        <p>通过时间线展示上海过去的图片，让我们回顾历史，展望未来。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">历史数据</span>
-          <span class="tech-tag">时间线</span>
-          <span class="tech-tag">可视化</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/Time-Line" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-eye"></i> 查看
-          </a>
-        </div>
-      </div>
-
-      <!-- The Earth -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-globe"></i>
-        </div>
-        <h2>The Earth</h2>
-        <div class="subtitle">实时地球俯瞰</div>
-        <p>实时查看地球的俯瞰图！通过卫星图像技术展示地球的美丽面貌。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">HTML</span>
-          <span class="tech-tag">卫星图像</span>
-          <span class="tech-tag">实时数据</span>
-          <span class="tech-tag">Web展示</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/The-Earth" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="#" class="btn btn-secondary">
-            <i class="fas fa-globe"></i> 探索
-          </a>
-        </div>
-      </div>
-
-      <!-- NB-Group.github.io -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-home"></i>
-        </div>
-        <h2>NB-Group.github.io</h2>
-        <div class="subtitle">个人网站</div>
-        <p>个人主页网站，展示项目和个人信息，采用现代化设计风格。</p>
-        <div class="tech-tags">
-          <span class="tech-tag">HTML5</span>
-          <span class="tech-tag">CSS3</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">响应式设计</span>
-        </div>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group/NB-Group.github.io" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="./" class="btn btn-secondary">
-            <i class="fas fa-home"></i> 访问
-          </a>
-        </div>
-      </div>
-
-      <!-- 更多项目 -->
-      <div class="project-card fade-in">
-        <div class="project-icon">
-          <i class="fas fa-plus-circle"></i>
-        </div>
-        <h2>更多项目</h2>
-        <div class="subtitle">持续创新中...</div>
-        <p>更多有趣的项目正在开发中，敬请期待！持续关注GitHub获取最新动态。</p>
-        <div class="project-buttons">
-          <a href="https://github.com/NB-Group" target="_blank" class="btn btn-primary">
-            <i class="fab fa-github"></i> 查看更多
-          </a>
-        </div>
-      </div>
     </div>
   </div>
 
-  <script>
-    // 滚动动画效果
-    function animateOnScroll() {
-      const elements = document.querySelectorAll('.fade-in');
-
-      elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-
-        if (elementTop < windowHeight - 100) {
-          element.classList.add('visible');
-        }
-      });
-    }
-
-    // 卡片交互效果
-    function addCardInteractions() {
-      const cards = document.querySelectorAll('.project-card');
-
-      cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-
-        card.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-    }
-
-    // 初始化
-    document.addEventListener('DOMContentLoaded', function() {
-      animateOnScroll();
-      addCardInteractions();
-
-      // 延迟显示效果
-      setTimeout(() => {
-        document.querySelectorAll('.fade-in').forEach((el, index) => {
-          setTimeout(() => {
-            el.classList.add('visible');
-          }, index * 100);
-        });
-      }, 300);
-    });
-
-    // 滚动监听
-    window.addEventListener('scroll', animateOnScroll);
-  </script>
 </body>
-
 </html>

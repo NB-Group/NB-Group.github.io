@@ -35,7 +35,7 @@ body,html {
 }
 
 body {
-    font-family: Comic Sans MS,Helvetica Neue,Microsoft Yahei,-apple-system,sans-serif!important;
+    font-family: 'Inter', sans-serif !important;
     -ms-flex-align: center;
     align-items: center;
     -ms-flex-pack: center;
@@ -66,54 +66,6 @@ a {
     text-decoration: none;
     color: var(--color-link);
     outline: 0
-}
-
-@font-face {
-    font-family: iconfont;
-    font-display: auto;
-    src: url(//at.alicdn.com/t/font_1056856_p9cyrhslv5j.eot?t=1551327438450);
-    src: url(//at.alicdn.com/t/font_1056856_p9cyrhslv5j.eot?t=1551327438450#iefix) format("embedded-opentype"),url("data:application/x-font-woff2;charset=utf-8;base64,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") format("woff2"),url(//at.alicdn.com/t/font_1056856_p9cyrhslv5j.woff?t=1551327438450) format("woff"),url(//at.alicdn.com/t/font_1056856_p9cyrhslv5j.ttf?t=1551327438450) format("truetype"),url(//at.alicdn.com/t/font_1056856_p9cyrhslv5j.svg?t=1551327438450#iconfont) format("svg")
-}
-
-.icon {
-    display: block;
-    width: 1.5em;
-    height: 1.5em;
-    margin: 0 auto;
-    fill: currentColor;
-    font-family: iconfont!important;
-    font-size: inherit;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale
-}
-
-.icon-github:before {
-    content: "\e7ab"
-}
-
-.icon-twitter:before {
-    content: "\ecc1"
-}
-
-.icon-other:before {
-    content: "\e631"
-}
-
-.icon-email:before {
-    content: "\e62d"
-}
-
-.icon-bokeyuan:before {
-    content: "\e603"
-}
-
-.icon-xiaolian:before {
-    content: "\e650"
-}
-
-.icon-wechat:before {
-    content: "\f23b"
 }
 
 main {
@@ -187,15 +139,17 @@ main {
 }
 
 .content-title {
-    font-family: Comic Sans MS,Helvetica Neue,Microsoft Yahei,-apple-system,sans-serif;
-    font-size: 4.7rem;
-    font-weight: 200;
+    font-family: 'Oswald', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
     color: var(--color-title);
     line-height: 1;
     margin-top: .8em;
     margin-bottom: .3em;
     animation: whiteShadow 1.5s ease-in-out infinite alternate;
-    text-shadow: #452d2d 0 0 1px,#fffffb 0 0 1px,#fffffb 0 0 2px
+    text-shadow: #452d2d 0 0 1px,#fffffb 0 0 1px,#fffffb 0 0 2px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
 }
 
 @media screen and (max-width: 50em) {
@@ -216,11 +170,13 @@ main {
 
 .content-subtitle {
     color: #fff;
-    font-family: Comic Sans MS,Helvetica Neue,Microsoft Yahei,-apple-system,sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1.2rem;
-    font-weight: 200;
+    font-weight: 400;
     margin-bottom: 2em;
-    text-shadow: 0 0 4px #fff
+    text-shadow: 0 0 4px #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -249,16 +205,24 @@ main {
 
 .enter {
     color: var(--color-enter);
-    font-size: .8rem;
-    letter-spacing: 3px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 5px;
     white-space: pre;
     pointer-events: auto;
     transition: all .4s;
-    z-index: 999
+    z-index: 999;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.3);
 }
 
 .enter:focus,.enter:hover {
-    color: var(--color-link-hover)
+    color: #00f2ff;
+    border-color: #00f2ff;
+    background: rgba(0, 242, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
 }
 
 .arrow {
@@ -563,25 +527,31 @@ main {
 }
 
 #card .card-inner header img {
-    border: 3px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 1px 1px rgba(0,0,0,.3);
+    border: 1px solid #00f2ff;
+    border-radius: 0;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
     transition: .4s ease-in-out
 }
 
 #card .card-inner header h1 {
     margin: 15px 15px 0;
     color: #fff;
-    font-size: 2rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
     line-height: 1.2em;
-    font-weight: 300
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 #card .card-inner header h2 {
-    color: #ccc;
-    letter-spacing: 3px;
-    font-size: .8rem;
-    font-weight: lighter
+    color: #00f2ff;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    opacity: 0.8;
 }
 
 #card .card-inner ul {
@@ -608,12 +578,16 @@ main {
 
 #card .card-inner ul li a {
     color: #b6b6b6;
-    transition: all .2s
+    transition: all .2s;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
 }
 
 #card .card-inner ul li a:hover {
-    color: #f6f6f6;
-    text-shadow: 0 0 2px #f6f6f6
+    color: #00f2ff;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.5);
 }
 
 #card .card-inner ul li:hover {
