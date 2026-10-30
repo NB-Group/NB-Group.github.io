@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>We Never (Remix) · 钢琴编配谱</title>
+<style>
+:root{--bg:#0b0d12;--panel:#12151d;--ink:#e8edf2;--dim:#8ea0b5;--olive:#cec768;--olive-hi:#e8e2a0;--steel:#a6bed6;--line:#232a36}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans CJK SC",system-ui,sans-serif;line-height:1.6}
+a{color:var(--steel);text-decoration:none}
+.banner{position:relative;height:260px;overflow:hidden;display:flex;align-items:flex-end}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(14px) saturate(1.15) brightness(.55);transform:scale(1.12)}
+.banner .inner{position:relative;width:100%;max-width:1060px;margin:0 auto;padding:0 28px 30px}
+h1{font-size:44px;font-weight:800;letter-spacing:.01em;text-shadow:0 2px 24px rgba(0,0,0,.6)}
+.sub{color:var(--dim);font-size:15px;margin-top:6px}
+.sub b{color:var(--olive-hi);font-weight:600}
+main{max-width:1060px;margin:0 auto;padding:30px 28px 70px}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:26px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;font-size:15px;font-weight:600;border:1px solid var(--line);background:var(--panel);color:var(--ink);transition:border-color .2s,transform .15s}
+.btn:hover{border-color:var(--steel);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(135deg,#3a3f2e,#2a3040);border-color:var(--olive);color:var(--olive-hi)}
+.btn.primary:hover{border-color:var(--olive-hi)}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.chip{padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel);font-size:13.5px;color:var(--dim)}
+.chip:hover{color:var(--olive-hi);border-color:var(--olive)}
+.chip b{color:var(--ink);font-weight:600}
+.pdfwrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:0 18px 60px rgba(0,0,0,.45)}
+.pdfwrap .bar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid var(--line);font-size:13px;color:var(--dim)}
+.pdfwrap iframe{display:block;width:100%;height:min(82vh,1150px);border:0;background:#fff}
+.credit{margin-top:34px;padding-top:22px;border-top:1px solid var(--line);color:var(--dim);font-size:13.5px}
+.credit b{color:var(--ink)}
+@media(max-width:640px){h1{font-size:32px}.banner{height:210px}}
+</style>
+</head>
+<body>
+<div class="banner">
+  <img src="cover.jpg" alt="">
+  <div class="inner">
+    <h1>We Never (Remix)</h1>
+    <div class="sub">钢琴编配 · <b>f 小调</b> · 4/4 · ♩=113 · 85 小节 · 钢琴独奏大谱表</div>
+  </div>
+</div>
+<main>
+  <div class="actions">
+    <a class="btn primary" href="https://www.tan8.com/yuepu-127285.html" target="_blank" rel="noopener">🎹 弹琴吧在线谱（可跟弹）↗</a>
+    <a class="btn" href="player.html">◈ 瀑布流可视化试奏 ↗</a>
+    <a class="btn" href="We-Never-Remix.mp3">▶ 试听成品</a>
+  </div>
+  <div class="dl">
+    <a class="chip" href="We-Never-Remix.mscz" download><b>.mscz</b> MuseScore 工程谱</a>
+    <a class="chip" href="We-Never-Remix-score.pdf" download><b>.pdf</b> 谱面 PDF</a>
+    <a class="chip" href="We-Never-Remix.mp3" download><b>.mp3</b> 成品音频</a>
+    <a class="chip" href="We-Never-Remix.mid" download><b>.mid</b> MIDI</a>
+  </div>
+  <div class="pdfwrap">
+    <div class="bar"><span>谱面预览 · 共 4 页 A4</span><span>f minor · 113 BPM</span></div>
+    <iframe src="We-Never-Remix-score.pdf#view=FitH" title="We Never (Remix) 钢琴谱"></iframe>
+  </div>
+  <div class="credit">
+    编配：<b>MuScriptor &amp; Claude Sonnet 5.5 | NB-Group</b>（MuScriptor 转录底稿 + AI 编曲，仅做细微调整）<br>
+    原曲 We Never (Remix)，本页内容为钢琴改编二创。
+  </div>
+</main>
+</body>
+</html>
